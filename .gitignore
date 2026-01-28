@@ -1,0 +1,53 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+venv/
+ENV/
+
+# =========================
+# Robot Framework
+# =========================
+output.xml
+log.html
+report.html
+reports/
+*.log
+*.html
+*.xml
+
+# =========================
+# Appium / Mobile
+# =========================
+appium.log
+appium-debug.log
+
+# =========================
+# Android / Gradle
+# =========================
+*.apk
+*.aab
+.gradle/
+build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# =========================
+# IDEs / Editors
+# =========================
+.vscode/
+.idea/
+*.iml
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db

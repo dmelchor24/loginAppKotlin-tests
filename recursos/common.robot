@@ -1,0 +1,33 @@
+*** Settings ***
+Library        AppiumLibrary
+Resource       ../variables/variables.robot
+Resource       ../elementos/elementos.robot
+
+*** Keywords ***
+Abrir Aplicacion
+    Open Application    
+    ...    ${REMOTE_URL}
+    ...    platformName=${platformName}
+    ...    deviceName=${deviceName}
+    ...    automationName=${automationName}
+    ...    appPackage=${appPackage}
+    ...    appActivity=${appActivity}
+    ...    avd=${avd}
+    ...    app=${app}
+    ...    newCommandTimeout=${newCommandTimeout}
+    ...    adbExecTimeout=${adbExecTimeout}
+    ...    autoGrantPermissions=${autoGrantPermissions}
+    ...    noReset=${noReset}
+
+Ingresar credenciales validas
+    Input Text        ${Email}        ${USERNAME}
+    Input Password        ${Password}     ${CONTRASENA}
+
+Hacer Login
+    Click Element    ${IniciarSesion}
+
+Hacer Logout 
+    Click Element    ${LOGOUT}
+    
+Cerrar Aplicacion
+    Close Application
