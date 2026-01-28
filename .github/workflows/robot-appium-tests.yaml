@@ -68,16 +68,18 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.REPO_LOGINAPP_TESTS }}
         APP_REPO: ${{ github.event.client_payload.app_repo }}
-        RUN_ID: ${{ github.event.client_payload.run_id }}
-        ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name }}
       run: |
         mkdir -p apk
 
-        ARTIFACT_ID=$(curl -s \
+        curl -s \
           -H "Authorization: Bearer $GH_TOKEN" \
           -H "Accept: application/vnd.github+json" \
-          https://api.github.com/repos/$APP_REPO/actions/runs/$RUN_ID/artifacts \
-          | jq -r ".artifacts[] | select(.name==\"$ARTIFACT_NAME\") | .id")
+          https://api.github.com/repos/$APP_REPO/actions/artifacts \
+          > artifacts.json
+
+        cat artifacts.json
+
+        ARTIFACT_ID=$(jq -r '.artifacts[] | select(.name=="app-debug-apk") | .id' artifacts.json)
 
         curl -L \
           -H "Authorization: Bearer $GH_TOKEN" \
