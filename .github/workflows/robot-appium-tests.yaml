@@ -3,21 +3,10 @@ name: Mobile Tests (Appium + Robot)
 on:
   repository_dispatch:
     types: [run-mobile-tests]
-
-  workflow_dispatch:
-    inputs:
-      apk_path:
-        description: "Ruta o nombre del APK"
-        required: true
-        default: "app-debug.apk"
-
-      env:
-        description: "Entorno de ejecución"
-        required: true
-        default: "ci"
-
+    
 permissions:
   contents: read
+  actions: read
 
 jobs:
   mobile-tests:
@@ -28,7 +17,7 @@ jobs:
     - name: Checkout repo tests
       uses: actions/checkout@v4
 
-    # 2️⃣ Configurar Python
+    # 2️⃣ Setup Python
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -42,58 +31,39 @@ jobs:
         pip install robotframework-appiumlibrary
         pip install Appium-Python-Client
 
-    # 4️⃣ Configurar Java (necesario para Android)
+    # 4️⃣ Setup Java
     - name: Setup Java
       uses: actions/setup-java@v4
       with:
-        distribution: "temurin"
-        java-version: "17"
+        distribution: temurin
+        java-version: 17
 
-    # 5️⃣ Instalar Android SDK
+    # 5️⃣ Setup Android SDK
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    # 6️⃣ Instalar Appium
+    # 6️⃣ Install Appium
     - name: Install Appium
       run: |
         npm install -g appium
         appium driver install uiautomator2
-    
-    # 7️⃣ Instalar jq
-    - name: Install jq
-      run: sudo apt-get install -y jq
 
-    # 8️⃣ Descargar APK desde repo del app
-    - name: Download APK from app repo
-      env:
-        GH_TOKEN: ${{ secrets.REPO_LOGINAPP_TESTS }}
-        APP_REPO: ${{ github.event.client_payload.app_repo }}
-      run: |
-        mkdir -p apk
+    # 7️⃣ Descargar APK EXACTO del repo APP
+    - name: Download APK artifact from App repo
+      uses: actions/download-artifact@v4
+      with:
+        name: app-debug-apk
+        path: apk
+        repository: ${{ github.event.client_payload.app_repo }}
+        run-id: ${{ github.event.client_payload.run_id }}
+        github-token: ${{ secrets.REPO_LOGINAPP_TESTS }}
 
-        curl -s \
-          -H "Authorization: Bearer $GH_TOKEN" \
-          -H "Accept: application/vnd.github+json" \
-          https://api.github.com/repos/$APP_REPO/actions/artifacts \
-          > artifacts.json
-
-        cat artifacts.json
-
-        ARTIFACT_ID=$(jq -r '.artifacts[] | select(.name=="app-debug-apk") | .id' artifacts.json)
-
-        curl -L \
-          -H "Authorization: Bearer $GH_TOKEN" \
-          -o artifact.zip \
-          https://api.github.com/repos/$APP_REPO/actions/artifacts/$ARTIFACT_ID/zip
-
-        unzip artifact.zip -d apk
-
-    # 9️⃣ Validar APK descargado
+    # 8️⃣ Verificar APK
     - name: Verify APK
       run: |
-        ls -la apk
+        ls -lh apk
 
-    # 🔟 Iniciar emulador Android
+    # 9️⃣ Iniciar Emulador
     - name: Start Android Emulator
       uses: reactivecircus/android-emulator-runner@v2
       with:
@@ -103,15 +73,15 @@ jobs:
         avd-name: appium
         script: echo "Emulator started"
 
-    # 1️⃣1️⃣ Ejecutar tests Robot Framework
+    # 🔟 Ejecutar Robot Tests
     - name: Run Robot Tests
       env:
         ENV: ci
-        APK_PATH: apk/${{ github.event.client_payload.apk_path }}
+        APK_PATH: apk/app-debug.apk
       run: |
         python scripts/execute-tests.py
 
-    # 1️⃣2️⃣ Publicar reportes
+    # 1️⃣1️⃣ Subir reportes
     - name: Upload test reports
       uses: actions/upload-artifact@v4
       with:
