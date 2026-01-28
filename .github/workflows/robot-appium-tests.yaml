@@ -3,7 +3,7 @@ name: Mobile Tests (Appium + Robot)
 on:
   repository_dispatch:
     types: [run-mobile-tests]
-    
+
 permissions:
   contents: read
   actions: read
@@ -42,12 +42,6 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    # 6️⃣ Install Appium
-    - name: Install Appium
-      run: |
-        npm install -g appium
-        appium driver install uiautomator2
-
     # 7️⃣ Descargar APK EXACTO del repo APP
     - name: Download APK artifact from App repo
       uses: actions/download-artifact@v4
@@ -67,11 +61,54 @@ jobs:
     - name: Start Android Emulator
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 30
-        arch: x86_64
+        api-level: 29
+        arch: arm64-v8a
+        target: default
         profile: pixel
         avd-name: appium
-        script: echo "Emulator started"
+        cores: 2
+        ram-size: 2048M
+        force-avd-creation: true
+        emulator-boot-timeout: 900
+        disable-animations: true
+        disable-linux-hw-accel: true
+        emulator-options: >
+          -no-window
+          -gpu swiftshader_indirect
+          -no-snapshot
+          -noaudio
+          -no-boot-anim
+        script: |
+          echo "Emulator started"
+
+    # 🔧 ADB HARDENING
+    - name: Stabilize ADB
+      run: |
+        adb kill-server
+        adb start-server
+        adb wait-for-device
+        adb devices
+        adb shell getprop sys.boot_completed
+        adb shell input keyevent 82
+
+    # 📦 INSTALL APK
+    - name: Install APK
+      run: |
+        adb install -r apk/app-debug.apk
+    
+    # Intalación de Node
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    # 6️⃣ Install Appium
+    - name: Install Appium
+      run: |
+        npm install -g appium
+        appium driver install uiautomator2
+        appium --log-level error &
+        sleep 15
 
     # 🔟 Ejecutar Robot Tests
     - name: Run Robot Tests
