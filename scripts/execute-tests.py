@@ -8,7 +8,7 @@ import shutil
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Entorno Local / CI
-ENV = os.getenv("ENV", "local")         # Modificar dependiendo el entorno a utilizar
+ENV = os.getenv("ENV", "ci")         # Modificar dependiendo el entorno a utilizar
 cap_file = f"android-{ENV}.py"
 
 cap_path = os.path.join(BASE_DIR, "capabilities", cap_file)
