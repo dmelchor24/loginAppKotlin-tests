@@ -17,8 +17,8 @@ on:
         default: "ci"
 
 permissions:
-  contents: write
-         
+  contents: read
+
 jobs:
   mobile-tests:
     runs-on: ubuntu-latest
@@ -58,20 +58,40 @@ jobs:
       run: |
         npm install -g appium
         appium driver install uiautomator2
+    
+    # 7️⃣ Instalar jq
+    - name: Install jq
+      run: sudo apt-get install -y jq
 
-    # 7️⃣ Descargar APK desde repo del app
-    - name: Download APK artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: ${{ github.event.client_payload.artifact_name }}
-        path: apk
+    # 8️⃣ Descargar APK desde repo del app
+    - name: Download APK from app repo
+      env:
+        GH_TOKEN: ${{ secrets.REPO_LOGINAPP_TESTS }}
+        APP_REPO: ${{ github.event.client_payload.app_repo }}
+        RUN_ID: ${{ github.event.client_payload.run_id }}
+        ARTIFACT_NAME: ${{ github.event.client_payload.artifact_name }}
+      run: |
+        mkdir -p apk
 
-    # 8️⃣ Validar APK descargado
+        ARTIFACT_ID=$(curl -s \
+          -H "Authorization: Bearer $GH_TOKEN" \
+          -H "Accept: application/vnd.github+json" \
+          https://api.github.com/repos/$APP_REPO/actions/runs/$RUN_ID/artifacts \
+          | jq -r ".artifacts[] | select(.name==\"$ARTIFACT_NAME\") | .id")
+
+        curl -L \
+          -H "Authorization: Bearer $GH_TOKEN" \
+          -o artifact.zip \
+          https://api.github.com/repos/$APP_REPO/actions/artifacts/$ARTIFACT_ID/zip
+
+        unzip artifact.zip -d apk
+
+    # 9️⃣ Validar APK descargado
     - name: Verify APK
       run: |
         ls -la apk
 
-    # 9️⃣ Iniciar emulador Android
+    # 🔟 Iniciar emulador Android
     - name: Start Android Emulator
       uses: reactivecircus/android-emulator-runner@v2
       with:
@@ -81,7 +101,7 @@ jobs:
         avd-name: appium
         script: echo "Emulator started"
 
-    # 🔟 Ejecutar tests Robot Framework
+    # 1️⃣1️⃣ Ejecutar tests Robot Framework
     - name: Run Robot Tests
       env:
         ENV: ci
@@ -89,7 +109,7 @@ jobs:
       run: |
         python scripts/execute-tests.py
 
-    # 1️⃣1️⃣ Publicar reportes
+    # 1️⃣2️⃣ Publicar reportes
     - name: Upload test reports
       uses: actions/upload-artifact@v4
       with:
