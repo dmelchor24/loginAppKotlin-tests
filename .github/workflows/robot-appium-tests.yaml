@@ -13,14 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # 1️⃣ Checkout repo de tests
     - name: Checkout repo tests
       uses: actions/checkout@v4
 
+    # 2️⃣ Setup Python
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: "3.11"
 
+    # 3️⃣ Instalar dependencias Python
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -28,25 +31,31 @@ jobs:
         pip install robotframework-appiumlibrary
         pip install Appium-Python-Client
 
+    # 4️⃣ Setup Java
     - name: Setup Java
       uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
 
+    # 5️⃣ Setup Android SDK
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
+    # 6️⃣ Setup Node.js (MOVIDO AQUÍ - antes del emulador)
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 22
 
+    # 7️⃣ Install Appium (MOVIDO AQUÍ - antes del emulador)
     - name: Install Appium
       run: |
         npm install -g appium@3.1.2
         appium driver install uiautomator2
+        appium --version
 
+    # 8️⃣ Descargar APK EXACTO del repo APP
     - name: Download APK artifact from App repo
       uses: actions/download-artifact@v4
       with:
@@ -56,10 +65,12 @@ jobs:
         run-id: ${{ github.event.client_payload.run_id }}
         github-token: ${{ secrets.REPO_LOGINAPP_TESTS }}
 
+    # 9️⃣ Verificar APK
     - name: Verify APK
       run: |
         ls -lh apk
 
+    # 🔟 Iniciar Emulador y Ejecutar TODOS los tests
     - name: Start Android Emulator and Run Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
@@ -75,9 +86,10 @@ jobs:
         disable-animations: true
         emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
         disable-linux-hw-accel: true
-        script: |
-          echo "Emulator starting"
+        script: |                    # ⬅️ DEBE TENER EL PIPE |
+          echo "Emulator starting..."
           until adb shell getprop sys.boot_completed | grep -m 1 1; do
+            echo "Waiting for boot..."
             sleep 5
           done
           echo "Emulator ready"
@@ -88,13 +100,13 @@ jobs:
           adb kill-server
           adb start-server
           adb wait-for-device
-          echo "Installing APK"
+          echo "Installing APK..."
           adb install -r apk/app-debug.apk
-          echo "Starting Appium"
+          echo "Starting Appium..."
           appium --log-level error &
           APPIUM_PID=$!
           sleep 15
-          echo "Running tests"
+          echo "Running tests..."
           python scripts/execute-tests.py
           TEST_EXIT_CODE=$?
           kill $APPIUM_PID || true
@@ -103,6 +115,7 @@ jobs:
         ENV: ci
         APK_PATH: apk/app-debug.apk
 
+    # 1️⃣1️⃣ Subir reportes (esto SÍ puede ir fuera)
     - name: Upload test reports
       if: always()
       uses: actions/upload-artifact@v4
