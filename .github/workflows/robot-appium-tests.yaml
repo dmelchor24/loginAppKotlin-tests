@@ -42,7 +42,19 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    # 7️⃣ Descargar APK EXACTO del repo APP
+    # 6️⃣ Setup Node.js (MOVIDO AQUÍ - antes del emulador)
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    # 7️⃣ Install Appium (MOVIDO AQUÍ - antes del emulador)
+    - name: Install Appium
+      run: |
+        npm install -g appium
+        appium driver install uiautomator2
+
+    # 8️⃣ Descargar APK EXACTO del repo APP
     - name: Download APK artifact from App repo
       uses: actions/download-artifact@v4
       with:
@@ -52,13 +64,13 @@ jobs:
         run-id: ${{ github.event.client_payload.run_id }}
         github-token: ${{ secrets.REPO_LOGINAPP_TESTS }}
 
-    # 8️⃣ Verificar APK
+    # 9️⃣ Verificar APK
     - name: Verify APK
       run: |
         ls -lh apk
 
-    # 9️⃣ Iniciar Emulador
-    - name: Start Android Emulator
+    # 🔟 Iniciar Emulador y Ejecutar TODOS los tests
+    - name: Start Android Emulator and Run Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
@@ -71,65 +83,60 @@ jobs:
         force-avd-creation: true
         emulator-boot-timeout: 1200
         disable-animations: true
-        emulator-options: >
-          -no-window
-          -no-snapshot
-          -noaudio
-          -no-boot-anim
-        emulator-port: 5554
+        emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
         disable-linux-hw-accel: true
-        enable-hw-keyboard: false
-        channel: stable
         script: |
-          echo "Esperando a que el emulador arranque..."
-          until adb -s emulator-5554 shell getprop sys.boot_completed | grep -m 1 1; do
+          echo "🚀 Emulador iniciado, esperando confirmación..."
+          until adb shell getprop sys.boot_completed | grep -m 1 1; do
+            echo "⏳ Esperando boot completo..."
             sleep 5
           done
-          echo "¡Emulador listo!"
-          adb -s emulator-5554 shell settings put global window_animation_scale 0
-          adb -s emulator-5554 shell settings put global transition_animation_scale 0
-          adb -s emulator-5554 shell settings put global animator_duration_scale 0
-          echo "Emulador configurado correctamente."
-
-    # 🔧 ADB HARDENING
-    - name: Stabilize ADB
-      run: |
-        adb kill-server
-        adb start-server
-        adb wait-for-device
-        adb devices
-        adb shell getprop sys.boot_completed
-        adb shell input keyevent 82
-
-    # 📦 INSTALL APK
-    - name: Install APK
-      run: |
-        adb install -r apk/app-debug.apk
-    
-    # Intalación de Node
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-
-    # 6️⃣ Install Appium
-    - name: Install Appium
-      run: |
-        npm install -g appium
-        appium driver install uiautomator2
-        appium --log-level error &
-        sleep 15
-
-    # 🔟 Ejecutar Robot Tests
-    - name: Run Robot Tests
+          echo "✅ Emulador listo!"
+          
+          # Desactivar animaciones
+          adb shell settings put global window_animation_scale 0
+          adb shell settings put global transition_animation_scale 0
+          adb shell settings put global animator_duration_scale 0
+          adb shell input keyevent 82
+          echo "✅ Animaciones desactivadas"
+          
+          # Estabilizar ADB
+          adb kill-server
+          adb start-server
+          adb wait-for-device
+          adb devices
+          echo "✅ ADB estabilizado"
+          
+          # Instalar APK
+          echo "📦 Instalando APK..."
+          adb install -r apk/app-debug.apk
+          echo "✅ APK instalado"
+          
+          # Iniciar Appium en background
+          echo "🔧 Iniciando servidor Appium..."
+          appium --log-level error &
+          APPIUM_PID=$!
+          sleep 15
+          echo "✅ Appium iniciado (PID: $APPIUM_PID)"
+          
+          # Ejecutar tests
+          echo "🤖 Ejecutando Robot Framework tests..."
+          python scripts/execute-tests.py
+          TEST_EXIT_CODE=$?
+          
+          # Detener Appium
+          echo "🛑 Deteniendo Appium..."
+          kill $APPIUM_PID || true
+          
+          echo "✅ Tests completados con código: $TEST_EXIT_CODE"
+          exit $TEST_EXIT_CODE
       env:
         ENV: ci
         APK_PATH: apk/app-debug.apk
-      run: |
-        python scripts/execute-tests.py
 
-    # 1️⃣1️⃣ Subir reportes
+    # 1️⃣1️⃣ Subir reportes (esto SÍ puede ir fuera)
     - name: Upload test reports
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: robot-reports
