@@ -87,43 +87,29 @@ jobs:
         emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
         disable-linux-hw-accel: true
         script: |                    # ⬅️ DEBE TENER EL PIPE |
-          echo "🚀 Emulador iniciado, esperando confirmación..."
+          echo "Emulator starting..."
           until adb shell getprop sys.boot_completed | grep -m 1 1; do
-            echo "⏳ Esperando boot completo..."
+            echo "Waiting for boot..."
             sleep 5
           done
-          echo "✅ Emulador listo!"
-          
+          echo "Emulator ready"
           adb shell settings put global window_animation_scale 0
           adb shell settings put global transition_animation_scale 0
           adb shell settings put global animator_duration_scale 0
           adb shell input keyevent 82
-          echo "✅ Animaciones desactivadas"
-          
           adb kill-server
           adb start-server
           adb wait-for-device
-          adb devices
-          echo "✅ ADB estabilizado"
-          
-          echo "📦 Instalando APK..."
+          echo "Installing APK..."
           adb install -r apk/app-debug.apk
-          echo "✅ APK instalado"
-          
-          echo "🔧 Iniciando servidor Appium..."
+          echo "Starting Appium..."
           appium --log-level error &
           APPIUM_PID=$!
           sleep 15
-          echo "✅ Appium iniciado (PID: $APPIUM_PID)"
-          
-          echo "🤖 Ejecutando Robot Framework tests..."
+          echo "Running tests..."
           python scripts/execute-tests.py
           TEST_EXIT_CODE=$?
-          
-          echo "🛑 Deteniendo Appium..."
           kill $APPIUM_PID || true
-          
-          echo "✅ Tests completados con código: $TEST_EXIT_CODE"
           exit $TEST_EXIT_CODE
       env:
         ENV: ci
