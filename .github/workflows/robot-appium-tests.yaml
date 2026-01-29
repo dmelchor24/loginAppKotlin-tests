@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   mobile-tests:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     # 1️⃣ Checkout repo de tests
@@ -86,31 +86,7 @@ jobs:
         disable-animations: true
         emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
         disable-linux-hw-accel: true
-        script: >-
-          echo "Emulator starting..."
-          until adb shell getprop sys.boot_completed | grep -m 1 1; do
-            echo "Waiting for boot..."
-            sleep 5
-          done
-          echo "Emulator ready"
-          adb shell settings put global window_animation_scale 0
-          adb shell settings put global transition_animation_scale 0
-          adb shell settings put global animator_duration_scale 0
-          adb shell input keyevent 82
-          adb kill-server
-          adb start-server
-          adb wait-for-device
-          echo "Installing APK..."
-          adb install -r apk/app-debug.apk
-          echo "Starting Appium..."
-          appium --log-level error &
-          APPIUM_PID=$!
-          sleep 15
-          echo "Running tests..."
-          python scripts/execute-tests.py
-          TEST_EXIT_CODE=$?
-          kill $APPIUM_PID || true
-          exit $TEST_EXIT_CODE
+        script: chmod +x ./scripts/run-tests.sh && ./scripts/run-tests.sh
       env:
         ENV: ci
         APK_PATH: apk/app-debug.apk
