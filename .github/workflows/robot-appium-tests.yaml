@@ -62,7 +62,7 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
-        arch: x86_64
+        arch: armeabi-v7a
         target: default
         profile: pixel
         avd-name: appium
@@ -73,17 +73,24 @@ jobs:
         disable-animations: true
         emulator-options: >
           -no-window
-          -gpu swiftshader_indirect
           -no-snapshot
           -noaudio
           -no-boot-anim
-        wait-for-boot: true
         emulator-port: 5554
         disable-linux-hw-accel: auto
         enable-hw-keyboard: false
         channel: stable
         script: |
-          echo "Emulator started"
+          echo "Esperando a que el emulador arranque..."
+          until adb -s emulator-5554 shell getprop sys.boot_completed | grep -m 1 1; do
+            sleep 5
+          done
+          echo "¡Emulador listo!"
+          # Desactivar animaciones para pruebas más rápidas
+          adb -s emulator-5554 shell settings put global window_animation_scale 0
+          adb -s emulator-5554 shell settings put global transition_animation_scale 0
+          adb -s emulator-5554 shell settings put global animator_duration_scale 0
+          echo "Emulador configurado correctamente."
 
     # 🔧 ADB HARDENING
     - name: Stabilize ADB
