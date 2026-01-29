@@ -51,8 +51,9 @@ jobs:
     # 7️⃣ Install Appium (MOVIDO AQUÍ - antes del emulador)
     - name: Install Appium
       run: |
-        npm install -g appium
+        npm install -g appium@3.0.0
         appium driver install uiautomator2
+        appium --version
 
     # 8️⃣ Descargar APK EXACTO del repo APP
     - name: Download APK artifact from App repo
