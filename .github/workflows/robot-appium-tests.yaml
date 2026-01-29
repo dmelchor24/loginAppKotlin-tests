@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   mobile-tests:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     # 1️⃣ Checkout repo de tests
