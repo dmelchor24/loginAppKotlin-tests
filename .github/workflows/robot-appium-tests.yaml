@@ -69,7 +69,7 @@ jobs:
         cores: 2
         ram-size: 2048M
         force-avd-creation: true
-        emulator-boot-timeout: 900
+        emulator-boot-timeout: 1200
         disable-animations: true
         emulator-options: >
           -no-window
@@ -77,6 +77,11 @@ jobs:
           -no-snapshot
           -noaudio
           -no-boot-anim
+        wait-for-boot: true
+        emulator-port: 5554
+        disable-linux-hw-accel: auto
+        enable-hw-keyboard: false
+        channel: stable
         script: |
           echo "Emulator started"
 
