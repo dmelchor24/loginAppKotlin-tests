@@ -62,7 +62,7 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
-        arch: armeabi-v7a
+        arch: x86_64
         target: default
         profile: pixel
         avd-name: appium
@@ -77,7 +77,7 @@ jobs:
           -noaudio
           -no-boot-anim
         emulator-port: 5554
-        disable-linux-hw-accel: auto
+        disable-linux-hw-accel: true
         enable-hw-keyboard: false
         channel: stable
         script: |
