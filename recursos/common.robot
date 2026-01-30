@@ -20,9 +20,10 @@ Abrir Aplicacion
     ...    noReset=${noReset}
 
 Ingresar credenciales validas
+    Sleep    15
     Input Text        ${Email}        ${USERNAME}
     Input Password        ${Password}     ${CONTRASENA}
-
+    Capture Page Screenshot        debug_screen.png
 Hacer Login
     Click Element    ${IniciarSesion}
 

@@ -42,29 +42,41 @@ command = [
     "tests"
 ]
 
-subprocess.run(command, check=True)
+# ⭐ Capturar el resultado sin hacer crash inmediato
+try:
+    result = subprocess.run(command, check=False)  # check=False para no lanzar excepción
+    exit_code = result.returncode
+except Exception as e:
+    print(f"Error ejecutando tests: {e}")
+    exit_code = 1
 
 # Referencia del archivo de log dentro del reporte
 report_path = f"{reports_dir}/{report_file}"
 
-with open(report_path, "r", encoding="utf-8") as f:
-    report_content = f.read()
+# Solo hacer esto si el reporte existe
+if os.path.exists(report_path):
+    with open(report_path, "r", encoding="utf-8") as f:
+        report_content = f.read()
 
-report_content = report_content.replace(log_file, "log.html")
-report_content = report_content.replace(output_file, "output.xml")
+    report_content = report_content.replace(log_file, "log.html")
+    report_content = report_content.replace(output_file, "output.xml")
 
-with open(report_path, "w", encoding="utf-8") as f:
-    f.write(report_content)
+    with open(report_path, "w", encoding="utf-8") as f:
+        f.write(report_content)
 
-# Copiar a docs/ para GitHub Pages
-shutil.copy(f"{reports_dir}/{report_file}", f"{docs_dir}/index.html")
-shutil.copy(f"{reports_dir}/{log_file}", f"{docs_dir}/log.html")
-shutil.copy(f"{reports_dir}/{output_file}", f"{docs_dir}/output.xml")
+    # Copiar a docs/ para GitHub Pages
+    shutil.copy(f"{reports_dir}/{report_file}", f"{docs_dir}/index.html")
+    shutil.copy(f"{reports_dir}/{log_file}", f"{docs_dir}/log.html")
+    shutil.copy(f"{reports_dir}/{output_file}", f"{docs_dir}/output.xml")
 
-# Almacena el ultimo timestamp ejecutado
-with open(f"{docs_dir}/.last_run.txt", "w") as f:
-    f.write(timestamp)
+    # Almacena el ultimo timestamp ejecutado
+    with open(f"{docs_dir}/.last_run.txt", "w") as f:
+        f.write(timestamp)
 
-# Mensajes informativos
-print("✅ Robot Framework ejecución completada correctamente")
-print("📄 Report publicado correctamente en GitHub Pages")
+    print("✅ Robot Framework ejecución completada")
+    print("📄 Report publicado correctamente en GitHub Pages")
+else:
+    print("No se generó reporte (posible fallo en inicialización)")
+
+# ⭐ Salir con el código correcto
+sys.exit(exit_code)
