@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.11.14 on linux)" generated="2026-01-31T05:19:40.768151" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.1 (Python 3.11.14 on linux)" generated="2026-01-31T05:32:27.760378" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="/home/runner/work/loginAppKotlin-tests/loginAppKotlin-tests/tests">
 <suite id="s1-s1" name="Login" source="/home/runner/work/loginAppKotlin-tests/loginAppKotlin-tests/tests/login.robot">
 <kw name="Abrir Aplicacion" owner="common" type="SETUP">
@@ -22,55 +22,99 @@ Please check https://appium.io/docs/en/2.19/guides/caps/
 | *Option*            | *Man.* | *Description*     |
 | remote_url          | Yes    | Appium server url |
 | alias               | No     | alias             |</doc>
-<status status="PASS" start="2026-01-31T05:19:41.007546" elapsed="96.717013"/>
+<status status="PASS" start="2026-01-31T05:32:27.992977" elapsed="95.730358"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:19:41.007032" elapsed="96.717669"/>
+<status status="PASS" start="2026-01-31T05:32:27.992440" elapsed="95.731086"/>
 </kw>
 <test id="s1-s1-t1" name="Login exitoso con credenciales validas" line="11">
 <kw name="Ingresar credenciales validas" owner="common">
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-01-31T05:21:37.725995" level="INFO">Slept 20 seconds.</msg>
-<arg>20</arg>
+<msg time="2026-01-31T05:34:28.724901" level="INFO">Slept 25 seconds.</msg>
+<arg>25</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-01-31T05:21:17.725606" elapsed="20.000522"/>
+<status status="PASS" start="2026-01-31T05:34:03.724407" elapsed="25.000641"/>
 </kw>
 <kw name="Input Text" owner="AppiumLibrary">
-<msg time="2026-01-31T05:21:37.727715" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]'</msg>
-<msg time="2026-01-31T05:21:42.847969" level="INFO">xpath criteria: //android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]</msg>
+<msg time="2026-01-31T05:34:28.726576" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]'</msg>
+<msg time="2026-01-31T05:34:33.802931" level="INFO">xpath criteria: //android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]</msg>
 <arg>${Email}</arg>
 <arg>${USERNAME}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-31T05:21:37.726318" elapsed="5.121745"/>
+<status status="PASS" start="2026-01-31T05:34:28.725248" elapsed="5.077808"/>
 </kw>
 <kw name="Input Password" owner="AppiumLibrary">
-<msg time="2026-01-31T05:21:42.849658" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]'</msg>
-<msg time="2026-01-31T05:21:45.204214" level="INFO">xpath criteria: //android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]</msg>
+<msg time="2026-01-31T05:34:33.805450" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]'</msg>
+<msg time="2026-01-31T05:34:35.823178" level="INFO">xpath criteria: //android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]</msg>
 <arg>${Password}</arg>
 <arg>${CONTRASENA}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-31T05:21:42.848241" elapsed="2.356098"/>
+<status status="PASS" start="2026-01-31T05:34:33.803290" elapsed="2.020024"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-01-31T05:21:50.650717" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="debug_screen.png"&gt;&lt;img src="debug_screen.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-01-31T05:34:40.799248" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="debug_screen.png"&gt;&lt;img src="debug_screen.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>debug_screen.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="PASS" start="2026-01-31T05:21:45.204553" elapsed="5.446313"/>
+<status status="PASS" start="2026-01-31T05:34:35.823594" elapsed="4.975769"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:21:17.725323" elapsed="32.925676"/>
+<status status="PASS" start="2026-01-31T05:34:03.724146" elapsed="37.075311"/>
+</kw>
+<kw name="Hacer Login" owner="common">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-01-31T05:35:05.800385" level="INFO">Slept 25 seconds.</msg>
+<arg>25</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-01-31T05:34:40.799994" elapsed="25.000539"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="AppiumLibrary">
+<msg time="2026-01-31T05:35:09.978714" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="captura_login.png"&gt;&lt;img src="captura_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>captura_login.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<status status="PASS" start="2026-01-31T05:35:05.800710" elapsed="4.178160"/>
+</kw>
+<kw name="Click Element" owner="AppiumLibrary">
+<msg time="2026-01-31T05:35:09.981310" level="INFO">Clicking element 'xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Iniciar Sesión']]'.</msg>
+<msg time="2026-01-31T05:35:11.189086" level="INFO">xpath criteria: //android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Iniciar Sesión']]</msg>
+<arg>${IniciarSesion}</arg>
+<doc>Clicks the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-01-31T05:35:09.979100" elapsed="1.210109"/>
+</kw>
+<status status="PASS" start="2026-01-31T05:34:40.799725" elapsed="30.389606"/>
+</kw>
+<kw name="Hacer Logout" owner="common">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-01-31T05:35:36.190504" level="INFO">Slept 25 seconds.</msg>
+<arg>25</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-01-31T05:35:11.189997" elapsed="25.000638"/>
+</kw>
+<kw name="Click Element" owner="AppiumLibrary">
+<msg time="2026-01-31T05:35:36.192180" level="INFO">Clicking element 'xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Cerrar Sesión']]'.</msg>
+<msg time="2026-01-31T05:35:37.056917" level="INFO">xpath criteria: //android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Cerrar Sesión']]</msg>
+<arg>${LOGOUT}</arg>
+<doc>Clicks the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-01-31T05:35:36.190808" elapsed="0.866233"/>
+</kw>
+<status status="PASS" start="2026-01-31T05:35:11.189617" elapsed="25.867518"/>
 </kw>
 <tag>pruebas mobile</tag>
-<status status="PASS" start="2026-01-31T05:21:17.724774" elapsed="32.926400"/>
+<status status="PASS" start="2026-01-31T05:34:03.723606" elapsed="93.333669"/>
 </test>
 <kw name="Cerrar Aplicacion" owner="common" type="TEARDOWN">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-01-31T05:36:02.058589" level="INFO">Slept 25 seconds.</msg>
+<arg>25</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-01-31T05:35:37.058203" elapsed="25.000513"/>
+</kw>
 <kw name="Close Application" owner="AppiumLibrary">
 <doc>Closes the current application and the webdriver session.</doc>
-<status status="PASS" start="2026-01-31T05:21:50.652270" elapsed="5.695944"/>
+<status status="PASS" start="2026-01-31T05:36:02.058893" elapsed="5.614524"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:21:50.651967" elapsed="5.696440"/>
+<status status="PASS" start="2026-01-31T05:35:37.057967" elapsed="30.615601"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:19:40.810877" elapsed="135.537587"/>
+<status status="PASS" start="2026-01-31T05:32:27.791717" elapsed="219.881894"/>
 </suite>
-<status status="PASS" start="2026-01-31T05:19:40.775743" elapsed="135.573524"/>
+<status status="PASS" start="2026-01-31T05:32:27.766292" elapsed="219.908093"/>
 </suite>
 <statistics>
 <total>
