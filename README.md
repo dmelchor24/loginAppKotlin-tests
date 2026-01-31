@@ -4,6 +4,11 @@
 
 Este proyecto implementa un framework de automatización de pruebas para aplicaciones Android utilizando **Robot Framework** y **Appium**. Está diseñado para probar el flujo de login de una aplicación móvil tanto en entornos locales como en CI/CD.
 
+![Robot Framework Tests](https://github.com/dmelchor24/loginAppKotlin-tests/actions/workflows/robot-appium-tests.yaml/badge.svg)
+
+📊 Reporte de la última ejecución (GitHub Pages)
+👉 https://dmelchor24.github.io/loginAppKotlin-tests
+
 ## 🏗️ Arquitectura del Proyecto
 
 ```
