@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.11.14 on linux)" generated="2026-01-31T05:32:27.760378" rpa="false" schemaversion="5">
-<suite id="s1" name="Tests" source="/home/runner/work/loginAppKotlin-tests/loginAppKotlin-tests/tests">
-<suite id="s1-s1" name="Login" source="/home/runner/work/loginAppKotlin-tests/loginAppKotlin-tests/tests/login.robot">
+<robot generator="Robot 7.4.1 (Python 3.13.5 on win32)" generated="2026-01-31T13:21:44.827520" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\dmelc\OneDrive\Documents\Workspace DM\Proyectos de IA\loginApp-tests\tests">
+<suite id="s1-s1" name="Login" source="C:\Users\dmelc\OneDrive\Documents\Workspace DM\Proyectos de IA\loginApp-tests\tests\login.robot">
 <kw name="Abrir Aplicacion" owner="common" type="SETUP">
 <kw name="Open Application" owner="AppiumLibrary">
 <arg>${REMOTE_URL}</arg>
@@ -22,99 +22,76 @@ Please check https://appium.io/docs/en/2.19/guides/caps/
 | *Option*            | *Man.* | *Description*     |
 | remote_url          | Yes    | Appium server url |
 | alias               | No     | alias             |</doc>
-<status status="PASS" start="2026-01-31T05:32:27.992977" elapsed="95.730358"/>
+<status status="PASS" start="2026-01-31T13:21:46.361586" elapsed="9.235311"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:32:27.992440" elapsed="95.731086"/>
+<status status="PASS" start="2026-01-31T13:21:46.359567" elapsed="9.237891"/>
 </kw>
-<test id="s1-s1-t1" name="Login exitoso con credenciales validas" line="11">
+<test id="s1-s1-t1" name="Login exitoso con credenciales validas" line="14">
 <kw name="Ingresar credenciales validas" owner="common">
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2026-01-31T05:34:28.724901" level="INFO">Slept 25 seconds.</msg>
-<arg>25</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-01-31T05:34:03.724407" elapsed="25.000641"/>
-</kw>
 <kw name="Input Text" owner="AppiumLibrary">
-<msg time="2026-01-31T05:34:28.726576" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]'</msg>
-<msg time="2026-01-31T05:34:33.802931" level="INFO">xpath criteria: //android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]</msg>
+<msg time="2026-01-31T13:21:55.602069" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[.//*[@content-desc="email_input"]]'</msg>
+<msg time="2026-01-31T13:22:00.535486" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="email_input"]]</msg>
 <arg>${Email}</arg>
 <arg>${USERNAME}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-31T05:34:28.725248" elapsed="5.077808"/>
+<status status="PASS" start="2026-01-31T13:21:55.599826" elapsed="4.935869"/>
 </kw>
 <kw name="Input Password" owner="AppiumLibrary">
-<msg time="2026-01-31T05:34:33.805450" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]'</msg>
-<msg time="2026-01-31T05:34:35.823178" level="INFO">xpath criteria: //android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]</msg>
+<msg time="2026-01-31T13:22:00.538173" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[.//*[@content-desc="password_input"]]'</msg>
+<msg time="2026-01-31T13:22:05.004070" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="password_input"]]</msg>
 <arg>${Password}</arg>
 <arg>${CONTRASENA}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-31T05:34:33.803290" elapsed="2.020024"/>
+<status status="PASS" start="2026-01-31T13:22:00.536033" elapsed="4.468204"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-01-31T05:34:40.799248" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="debug_screen.png"&gt;&lt;img src="debug_screen.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>debug_screen.png</arg>
+<msg time="2026-01-31T13:22:07.798428" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="pantalla_login.png"&gt;&lt;img src="pantalla_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>pantalla_login.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="PASS" start="2026-01-31T05:34:35.823594" elapsed="4.975769"/>
+<status status="PASS" start="2026-01-31T13:22:05.004521" elapsed="2.794146"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:34:03.724146" elapsed="37.075311"/>
+<status status="PASS" start="2026-01-31T13:21:55.599310" elapsed="12.199582"/>
 </kw>
 <kw name="Hacer Login" owner="common">
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2026-01-31T05:35:05.800385" level="INFO">Slept 25 seconds.</msg>
-<arg>25</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-01-31T05:34:40.799994" elapsed="25.000539"/>
-</kw>
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-01-31T05:35:09.978714" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="captura_login.png"&gt;&lt;img src="captura_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-01-31T13:22:10.622701" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="captura_login.png"&gt;&lt;img src="captura_login.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>captura_login.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="PASS" start="2026-01-31T05:35:05.800710" elapsed="4.178160"/>
+<status status="PASS" start="2026-01-31T13:22:07.800650" elapsed="2.822277"/>
 </kw>
 <kw name="Click Element" owner="AppiumLibrary">
-<msg time="2026-01-31T05:35:09.981310" level="INFO">Clicking element 'xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Iniciar Sesión']]'.</msg>
-<msg time="2026-01-31T05:35:11.189086" level="INFO">xpath criteria: //android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Iniciar Sesión']]</msg>
+<msg time="2026-01-31T13:22:10.625878" level="INFO">Clicking element 'xpath=//*[@content-desc="login_button"]'.</msg>
+<msg time="2026-01-31T13:22:15.166361" level="INFO">xpath criteria: //*[@content-desc="login_button"]</msg>
 <arg>${IniciarSesion}</arg>
 <doc>Clicks the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-31T05:35:09.979100" elapsed="1.210109"/>
+<status status="PASS" start="2026-01-31T13:22:10.623163" elapsed="4.543330"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:34:40.799725" elapsed="30.389606"/>
+<status status="PASS" start="2026-01-31T13:22:07.799828" elapsed="7.366794"/>
 </kw>
 <kw name="Hacer Logout" owner="common">
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2026-01-31T05:35:36.190504" level="INFO">Slept 25 seconds.</msg>
-<arg>25</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-01-31T05:35:11.189997" elapsed="25.000638"/>
-</kw>
 <kw name="Click Element" owner="AppiumLibrary">
-<msg time="2026-01-31T05:35:36.192180" level="INFO">Clicking element 'xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Cerrar Sesión']]'.</msg>
-<msg time="2026-01-31T05:35:37.056917" level="INFO">xpath criteria: //android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Cerrar Sesión']]</msg>
+<msg time="2026-01-31T13:22:15.169800" level="INFO">Clicking element 'xpath=//*[@content-desc="logout_button_main"]'.</msg>
+<msg time="2026-01-31T13:22:19.563109" level="INFO">xpath criteria: //*[@content-desc="logout_button_main"]</msg>
 <arg>${LOGOUT}</arg>
 <doc>Clicks the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-31T05:35:36.190808" elapsed="0.866233"/>
+<status status="PASS" start="2026-01-31T13:22:15.168006" elapsed="4.395219"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:35:11.189617" elapsed="25.867518"/>
+<status status="PASS" start="2026-01-31T13:22:15.167292" elapsed="4.396076"/>
 </kw>
+<doc>Verifica que un usuario puede iniciar y cerrar sesión con credenciales válidas</doc>
 <tag>pruebas mobile</tag>
-<status status="PASS" start="2026-01-31T05:34:03.723606" elapsed="93.333669"/>
+<status status="PASS" start="2026-01-31T13:21:55.598139" elapsed="23.965786"/>
 </test>
 <kw name="Cerrar Aplicacion" owner="common" type="TEARDOWN">
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2026-01-31T05:36:02.058589" level="INFO">Slept 25 seconds.</msg>
-<arg>25</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-01-31T05:35:37.058203" elapsed="25.000513"/>
-</kw>
 <kw name="Close Application" owner="AppiumLibrary">
 <doc>Closes the current application and the webdriver session.</doc>
-<status status="PASS" start="2026-01-31T05:36:02.058893" elapsed="5.614524"/>
+<status status="PASS" start="2026-01-31T13:22:19.565911" elapsed="3.223637"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:35:37.057967" elapsed="30.615601"/>
+<status status="PASS" start="2026-01-31T13:22:19.565664" elapsed="3.224123"/>
 </kw>
-<status status="PASS" start="2026-01-31T05:32:27.791717" elapsed="219.881894"/>
+<status status="PASS" start="2026-01-31T13:21:44.916105" elapsed="37.873769"/>
 </suite>
-<status status="PASS" start="2026-01-31T05:32:27.766292" elapsed="219.908093"/>
+<status status="PASS" start="2026-01-31T13:21:44.857456" elapsed="37.935100"/>
 </suite>
 <statistics>
 <total>

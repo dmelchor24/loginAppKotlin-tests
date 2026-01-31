@@ -4,19 +4,19 @@ Library        AppiumLibrary
 
 *** Variables ***
 # Título principal de la aplicación - usado para verificar que la app se abrió correctamente
-${TituloAPP}        xpath=//android.widget.TextView[@text='App de Testing']
+${TituloAPP}        xpath=//*[@content-desc="login_title"]
 
 # Campo de entrada para el correo electrónico
-${Email}            xpath=//android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]
+${Email}            xpath=//android.widget.EditText[.//*[@content-desc="email_input"]]
 
 # Campo de entrada para la contraseña
-${Password}         xpath=//android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]
+${Password}         xpath=//android.widget.EditText[.//*[@content-desc="password_input"]]
 
 # Botón para iniciar sesión
-${IniciarSesion}    xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Iniciar Sesión']]
+${IniciarSesion}    xpath=//*[@content-desc="login_button"]
 
 # Mensaje de bienvenida - usado para verificar login exitoso
-${BIENVENIDA}       xpath=//android.widget.TextView[@text='¡Bienvenido!']
+${BIENVENIDA}       xpath=//*[@content-desc="home_title"]
 
 # Botón para cerrar sesión
-${LOGOUT}           xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Cerrar Sesión']]
+${LOGOUT}           xpath=//*[@content-desc="logout_button_main"]

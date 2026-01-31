@@ -4,58 +4,60 @@
 # =========================
 # PYTHON - Archivos generados por Python
 # =========================
-__pycache__/                # Directorio de cache de Python
-*.pyc                       # Archivos compilados de Python
-*.pyo                       # Archivos optimizados de Python
-*.pyd                       # Extensiones dinámicas de Python
-.env                        # Variables de entorno locales
-.venv                       # Entorno virtual de Python
-venv/                       # Directorio de entorno virtual
-ENV/                        # Directorio de entorno virtual alternativo
+__pycache__/               
+*.pyc                       
+*.pyo                      
+*.pyd                       
+.env                        
+.venv                       
+venv/                      
+ENV/                        
 
 # =========================
 # ROBOT FRAMEWORK - Archivos de reportes y logs
 # =========================
-report.html                 # Reporte HTML individual (se genera con timestamp)
-reports/                    # Directorio completo de reportes (excepto estructura base)
-*.log                       # Archivos de log genéricos
+report.html                 
+reports/                    
+*.log                       
+.html
+.xml
 
 # =========================
 # APPIUM / MOBILE - Logs de automatización móvil
 # =========================
-appium.log                  # Log principal de Appium
-appium-debug.log           # Log de debug de Appium
+appium.log                  
+appium-debug.log           
 
 # =========================
 # ANDROID / GRADLE - Archivos de desarrollo Android
 # =========================
-*.apk                       # Archivos de aplicación Android
-*.aab                       # Android App Bundle
-.gradle/                    # Cache de Gradle
-build/                      # Directorio de build de Android
-local.properties            # Propiedades locales de Android Studio
-captures/                   # Capturas de pantalla de Android Studio
-.externalNativeBuild/       # Build nativo externo
-.cxx/                       # Archivos C++ compilados
+*.apk                       
+*.aab                       
+.gradle/                    
+build/                      
+local.properties            
+captures/                   
+.externalNativeBuild/       
+.cxx/                       
 
 # =========================
 # IDEs / EDITORS - Configuraciones de editores
 # =========================
-.vscode/                    # Configuración de Visual Studio Code
-.idea/                      # Configuración de IntelliJ IDEA / Android Studio
-*.iml                       # Archivos de módulo de IntelliJ
+.vscode/                    
+.idea/                      
+*.iml                      
 
 # =========================
 # SISTEMA OPERATIVO - Archivos del OS
 # =========================
-.DS_Store                   # Archivos de metadatos de macOS
-Thumbs.db                   # Cache de miniaturas de Windows
+.DS_Store                   
+Thumbs.db                   
 
 # =========================
 # ARCHIVOS TEMPORALES Y SENSIBLES
 # =========================
-*.tmp                       # Archivos temporales
-*.temp                      # Archivos temporales alternativos
-.env.local                  # Variables de entorno locales específicas
-secrets.py                  # Archivo de secretos (si existe)
-config.local.py             # Configuración local específica
+*.tmp                       
+*.temp                      
+.env.local                  
+secrets.py                  
+config.local.py             
