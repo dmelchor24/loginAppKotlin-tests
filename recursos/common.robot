@@ -1,38 +1,45 @@
 *** Settings ***
-Library        AppiumLibrary
-Resource       ../variables/variables.robot
-Resource       ../elementos/elementos.robot
+# Importación de librerías y recursos necesarios
+Library        AppiumLibrary                        # Librería principal para automatización móvil
+Resource       ../variables/variables.robot         # Variables globales del proyecto
+Resource       ../elementos/elementos.robot         # Localizadores de elementos UI
 
 *** Keywords ***
 Abrir Aplicacion
+    # Utiliza todas las capacidades definidas en el archivo de capabilities correspondiente
     Open Application    
-    ...    ${REMOTE_URL}
-    ...    platformName=${platformName}
-    ...    deviceName=${deviceName}
-    ...    automationName=${automationName}
-    ...    appPackage=${appPackage}
-    ...    appActivity=${appActivity}
-    ...    avd=${avd}
-    ...    app=${app}
-    ...    newCommandTimeout=${newCommandTimeout}
-    ...    adbExecTimeout=${adbExecTimeout}
-    ...    autoGrantPermissions=${autoGrantPermissions}
-    ...    noReset=${noReset}
+    ...    ${REMOTE_URL}                                    # URL del servidor Appium
+    ...    platformName=${platformName}                     # Plataforma objetivo (Android)
+    ...    deviceName=${deviceName}                         # ID del dispositivo o emulador
+    ...    automationName=${automationName}                 # Framework de automatización (UiAutomator2)
+    ...    appPackage=${appPackage}                         # Paquete de la aplicación
+    ...    appActivity=${appActivity}                       # Actividad principal
+    ...    avd=${avd}                                       # Android Virtual Device (solo emulador)
+    ...    app=${app}                                       # Ruta del APK (solo CI)
+    ...    newCommandTimeout=${newCommandTimeout}           # Timeout entre comandos
+    ...    adbExecTimeout=${adbExecTimeout}                 # Timeout para ADB
+    ...    autoGrantPermissions=${autoGrantPermissions}     # Otorgar permisos automáticamente
+    ...    noReset=${noReset}                               # Controlar reset de app
 
 Ingresar credenciales validas
-    Sleep    25
-    Input Text        ${Email}        ${USERNAME}
-    Input Password        ${Password}     ${CONTRASENA}
-    Capture Page Screenshot        debug_screen.png
+    # Ingresa las credenciales de prueba en los campos correspondientes
+    Sleep    25                                             # Espera para que la UI se estabilice
+    Input Text        ${Email}        ${USERNAME}           # Ingresa email en campo correspondiente
+    Input Password    ${Password}     ${CONTRASENA}         # Ingresa contraseña en campo correspondiente
+    Capture Page Screenshot        pantalla_login.png       # Captura pantalla para debugging
+
 Hacer Login
-    Sleep    25
-    Capture Page Screenshot        captura_login.png
-    Click Element    ${IniciarSesion}
+    # Ejecuta el proceso de inicio de sesión
+    Sleep    25                                              # Espera para que la UI se estabilice
+    Capture Page Screenshot        captura_login.png         # Captura pantalla antes del login
+    Click Element    ${IniciarSesion}                        # Hace clic en el botón de iniciar sesión
 
 Hacer Logout
-    Sleep     25
-    Click Element    ${LOGOUT}
+    # Ejecuta el proceso de cierre de sesión
+    Sleep     25                            # Espera para que la UI se estabilice
+    Click Element    ${LOGOUT}              # Hace clic en el botón de cerrar sesión
     
 Cerrar Aplicacion
-    Sleep     25
-    Close Application
+    # Cierra la aplicación y termina la sesión de Appium
+    Sleep     25              # Espera para que cualquier proceso termine
+    Close Application         # Cierra la conexión con la aplicación
