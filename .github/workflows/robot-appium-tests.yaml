@@ -83,7 +83,7 @@ jobs:
         cores: 2
         ram-size: 2048M
         force-avd-creation: true
-        emulator-boot-timeout: 1200
+        emulator-boot-timeout: 2000
         disable-animations: true
         emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
         disable-linux-hw-accel: true

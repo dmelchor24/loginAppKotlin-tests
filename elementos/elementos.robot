@@ -3,14 +3,14 @@ Library        AppiumLibrary
 
 *** Variables ***
 
-${TituloAPP}        //android.widget.TextView[@text='App de Testing']
-${Email}            //android.widget.EditText[.//android.widget.TextView[@text='Correo Electrónico']]
-${Password}         //android.widget.EditText[.//android.widget.TextView[@text='Contraseña']]
+${TituloAPP}        xpath=//android.widget.TextView[@text='App de Testing']
+${Email}            xpath=//android.widget.EditText[.//android.widget.TextView[@text='Correo Electrónico']]
+${Password}         xpath=//android.widget.EditText[.//android.widget.TextView[@text='Contraseña']]
 #${IniciarSesion}    //android.view.View[@clickable='true' and @bounds='[63,1325][1017,1472]']
-${IniciarSesion}    xpath=(//android.view.View[@clickable='true'])[4]
+${IniciarSesion}    xpath=//*[@content-desc='login_button']
 
 
 
-${BIENVENIDA}       //android.widget.TextView[@text='¡Bienvenido!']
+${BIENVENIDA}       xpath=//android.widget.TextView[@text='¡Bienvenido!']
 #${LOGOUT}           //android.view.View[@clickable='true' and @bounds='[63,1447][1017,1573]']
-${LOGOUT}           xpath=(//android.view.View[@clickable='true'])[3]
+${LOGOUT}           xpath=//*[@content-desc='logout_button']
