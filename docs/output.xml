@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.13.5 on win32)" generated="2026-01-30T22:02:30.620471" rpa="false" schemaversion="5">
-<suite id="s1" name="Tests" source="C:\Users\dmelc\OneDrive\Documents\Workspace DM\Proyectos de IA\loginApp-tests\tests">
-<suite id="s1-s1" name="Login" source="C:\Users\dmelc\OneDrive\Documents\Workspace DM\Proyectos de IA\loginApp-tests\tests\login.robot">
+<robot generator="Robot 7.4.1 (Python 3.11.14 on linux)" generated="2026-01-31T05:06:26.485209" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="/home/runner/work/loginAppKotlin-tests/loginAppKotlin-tests/tests">
+<suite id="s1-s1" name="Login" source="/home/runner/work/loginAppKotlin-tests/loginAppKotlin-tests/tests/login.robot">
 <kw name="Abrir Aplicacion" owner="common" type="SETUP">
 <kw name="Open Application" owner="AppiumLibrary">
 <arg>${REMOTE_URL}</arg>
@@ -22,81 +22,55 @@ Please check https://appium.io/docs/en/2.19/guides/caps/
 | *Option*            | *Man.* | *Description*     |
 | remote_url          | Yes    | Appium server url |
 | alias               | No     | alias             |</doc>
-<status status="PASS" start="2026-01-30T22:02:32.707309" elapsed="14.893767"/>
+<status status="PASS" start="2026-01-31T05:06:26.696842" elapsed="126.798342"/>
 </kw>
-<status status="PASS" start="2026-01-30T22:02:32.704702" elapsed="14.896749"/>
+<status status="PASS" start="2026-01-31T05:06:26.696304" elapsed="126.799021"/>
 </kw>
 <test id="s1-s1-t1" name="Login exitoso con credenciales validas" line="11">
 <kw name="Ingresar credenciales validas" owner="common">
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-01-30T22:03:02.604264" level="INFO">Slept 15 seconds.</msg>
-<arg>15</arg>
+<msg time="2026-01-31T05:08:53.496602" level="INFO">Slept 20 seconds.</msg>
+<arg>20</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-01-30T22:02:47.603087" elapsed="15.001440"/>
+<status status="PASS" start="2026-01-31T05:08:33.496191" elapsed="20.000568"/>
 </kw>
 <kw name="Input Text" owner="AppiumLibrary">
-<msg time="2026-01-30T22:03:02.609207" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]'</msg>
-<msg time="2026-01-30T22:03:07.760723" level="INFO">xpath criteria: //android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]</msg>
+<msg time="2026-01-31T05:08:53.498462" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]'</msg>
+<msg time="2026-01-31T05:08:58.891476" level="INFO">xpath criteria: //android.widget.EditText[@password='false' and .//android.widget.TextView[@text='Correo Electrónico']]</msg>
 <arg>${Email}</arg>
 <arg>${USERNAME}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-30T22:03:02.604908" elapsed="5.155962"/>
+<status status="PASS" start="2026-01-31T05:08:53.496975" elapsed="5.394599"/>
 </kw>
 <kw name="Input Password" owner="AppiumLibrary">
-<msg time="2026-01-30T22:03:07.763334" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]'</msg>
-<msg time="2026-01-30T22:03:12.193902" level="INFO">xpath criteria: //android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]</msg>
+<msg time="2026-01-31T05:08:58.893262" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]'</msg>
+<msg time="2026-01-31T05:09:01.599716" level="INFO">xpath criteria: //android.widget.EditText[@password='true' and .//android.widget.TextView[@text='Contraseña']]</msg>
 <arg>${Password}</arg>
 <arg>${CONTRASENA}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-30T22:03:07.761131" elapsed="4.432960"/>
+<status status="PASS" start="2026-01-31T05:08:58.891764" elapsed="2.708081"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-01-30T22:03:15.021427" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="debug_screen.png"&gt;&lt;img src="debug_screen.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-01-31T05:09:06.918994" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="debug_screen.png"&gt;&lt;img src="debug_screen.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>debug_screen.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="PASS" start="2026-01-30T22:03:12.194411" elapsed="2.827272"/>
+<status status="PASS" start="2026-01-31T05:09:01.600098" elapsed="5.319078"/>
 </kw>
-<status status="PASS" start="2026-01-30T22:02:47.602624" elapsed="27.419316"/>
-</kw>
-<kw name="Hacer Login" owner="common">
-<kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-01-30T22:03:17.880864" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="captura_login.png"&gt;&lt;img src="captura_login.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>captura_login.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="PASS" start="2026-01-30T22:03:15.023841" elapsed="2.857303"/>
-</kw>
-<kw name="Click Element" owner="AppiumLibrary">
-<msg time="2026-01-30T22:03:17.885228" level="INFO">Clicking element 'xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Iniciar Sesión']]'.</msg>
-<msg time="2026-01-30T22:03:22.322968" level="INFO">xpath criteria: //android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Iniciar Sesión']]</msg>
-<arg>${IniciarSesion}</arg>
-<doc>Clicks the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-30T22:03:17.881490" elapsed="4.441607"/>
-</kw>
-<status status="PASS" start="2026-01-30T22:03:15.022879" elapsed="7.300359"/>
-</kw>
-<kw name="Hacer Logout" owner="common">
-<kw name="Click Element" owner="AppiumLibrary">
-<msg time="2026-01-30T22:03:22.326512" level="INFO">Clicking element 'xpath=//android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Cerrar Sesión']]'.</msg>
-<msg time="2026-01-30T22:03:26.759239" level="INFO">xpath criteria: //android.view.View[@clickable='true' and @package='com.example.logincompose' and .//android.widget.TextView[@text='Cerrar Sesión']]</msg>
-<arg>${LOGOUT}</arg>
-<doc>Clicks the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-01-30T22:03:22.324343" elapsed="4.435006"/>
-</kw>
-<status status="PASS" start="2026-01-30T22:03:22.323833" elapsed="4.435637"/>
+<status status="PASS" start="2026-01-31T05:08:33.495915" elapsed="33.423403"/>
 </kw>
 <tag>pruebas mobile</tag>
-<status status="PASS" start="2026-01-30T22:02:47.601580" elapsed="39.158290"/>
+<status status="PASS" start="2026-01-31T05:08:33.495398" elapsed="33.424119"/>
 </test>
 <kw name="Cerrar Aplicacion" owner="common" type="TEARDOWN">
 <kw name="Close Application" owner="AppiumLibrary">
 <doc>Closes the current application and the webdriver session.</doc>
-<status status="PASS" start="2026-01-30T22:03:26.761374" elapsed="3.341511"/>
+<status status="PASS" start="2026-01-31T05:09:06.920616" elapsed="6.746479"/>
 </kw>
-<status status="PASS" start="2026-01-30T22:03:26.761091" elapsed="3.341950"/>
+<status status="PASS" start="2026-01-31T05:09:06.920323" elapsed="6.746918"/>
 </kw>
-<status status="PASS" start="2026-01-30T22:02:30.761955" elapsed="59.341147"/>
+<status status="PASS" start="2026-01-31T05:06:26.516414" elapsed="167.150860"/>
 </suite>
-<status status="PASS" start="2026-01-30T22:02:30.663146" elapsed="59.441155"/>
+<status status="PASS" start="2026-01-31T05:06:26.491290" elapsed="167.176584"/>
 </suite>
 <statistics>
 <total>
