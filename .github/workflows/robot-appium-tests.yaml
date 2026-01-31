@@ -5,8 +5,8 @@ on:
     types: [run-mobile-tests]
 
 permissions:
-  contents: read
   actions: read
+  contents: write
 
 jobs:
   mobile-tests:
