@@ -10,6 +10,6 @@ Suite Teardown    Cerrar Aplicacion
 *** Test Cases ***
 Login exitoso con credenciales validas
     Ingresar credenciales validas
-#    Hacer Login
-#    Hacer Logout
+    Hacer Login
+    Hacer Logout
     

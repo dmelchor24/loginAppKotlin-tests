@@ -28,7 +28,6 @@ output_file = f"output_{timestamp}.xml"
 reports_dir = os.path.join(BASE_DIR, "reports", f"run_{timestamp}")
 docs_dir = os.path.join(BASE_DIR, "docs")
 
-
 os.makedirs(reports_dir, exist_ok=True)
 os.makedirs(docs_dir, exist_ok=True)
 
