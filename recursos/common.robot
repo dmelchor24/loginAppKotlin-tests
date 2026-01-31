@@ -28,7 +28,8 @@ Hacer Login
     Capture Page Screenshot        captura_login.png
     Click Element    ${IniciarSesion}
 
-Hacer Logout 
+Hacer Logout
+    Sleep     15 
     Click Element    ${LOGOUT}
     
 Cerrar Aplicacion
