@@ -17,6 +17,8 @@ jobs:
     # 1️⃣ Checkout repo de tests
     - name: Checkout repo tests
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     # 2️⃣ Setup Python
     - name: Setup Python
@@ -99,12 +101,24 @@ jobs:
       with:
         name: robot-reports
         path: reports
+    
+    - name: Debug docs content
+      run: |
+        echo "Contenido de docs:"
+        ls -la docs
 
     - name: Publish Robot Framework report to GitHub Pages    # Paso 7: Se publica el reporte en GitHub Pages
       if: always()
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
+
+        git status
         git add docs
-        git commit -m "Actualizacion: Reporte de Robot Framework" || echo "Sin ningun cambio"
-        git push
+
+        if git diff --cached --quiet; then
+          echo "No hay cambios reales en docs/"
+        else
+          git commit -m "Actualizacion: Reporte de Robot Framework"
+          git push
+        fi

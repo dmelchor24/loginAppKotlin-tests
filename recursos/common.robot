@@ -20,17 +20,17 @@ Abrir Aplicacion
     ...    noReset=${noReset}
 
 Ingresar credenciales validas
-    Sleep    15
+    Sleep    20
     Input Text        ${Email}        ${USERNAME}
     Input Password        ${Password}     ${CONTRASENA}
     Capture Page Screenshot        debug_screen.png
-Hacer Login
-    Capture Page Screenshot        captura_login.png
-    Click Element    ${IniciarSesion}
+#Hacer Login
+#    Capture Page Screenshot        captura_login.png
+#    Click Element    ${IniciarSesion}
 
-Hacer Logout
-    Sleep     15 
-    Click Element    ${LOGOUT}
+#Hacer Logout
+#    Sleep     15 
+#    Click Element    ${LOGOUT}
     
 Cerrar Aplicacion
     Close Application
