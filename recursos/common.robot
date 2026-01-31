@@ -23,23 +23,23 @@ Abrir Aplicacion
 
 Ingresar credenciales validas
     # Ingresa las credenciales de prueba en los campos correspondientes
-    #Sleep    25                                             # Espera para que la UI se estabilice
+    Sleep    25                                             # Espera para que la UI se estabilice
     Input Text        ${Email}        ${USERNAME}           # Ingresa email en campo correspondiente
     Input Password    ${Password}     ${CONTRASENA}         # Ingresa contraseña en campo correspondiente
     Capture Page Screenshot        pantalla_login.png       # Captura pantalla para debugging
 
 Hacer Login
     # Ejecuta el proceso de inicio de sesión
-    #Sleep    25                                              # Espera para que la UI se estabilice
+    Sleep    25                                              # Espera para que la UI se estabilice
     Capture Page Screenshot        captura_login.png         # Captura pantalla antes del login
     Click Element    ${IniciarSesion}                        # Hace clic en el botón de iniciar sesión
 
 Hacer Logout
     # Ejecuta el proceso de cierre de sesión
-    #Sleep     25                            # Espera para que la UI se estabilice
+    Sleep     25                            # Espera para que la UI se estabilice
     Click Element    ${LOGOUT}              # Hace clic en el botón de cerrar sesión
     
 Cerrar Aplicacion
     # Cierra la aplicación y termina la sesión de Appium
-    #Sleep     25              # Espera para que cualquier proceso termine
+    Sleep     25              # Espera para que cualquier proceso termine
     Close Application         # Cierra la conexión con la aplicación
