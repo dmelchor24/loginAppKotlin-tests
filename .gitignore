@@ -13,13 +13,9 @@ ENV/
 # =========================
 # Robot Framework
 # =========================
-output.xml
-log.html
 report.html
 reports/
 *.log
-*.html
-*.xml
 
 # =========================
 # Appium / Mobile
