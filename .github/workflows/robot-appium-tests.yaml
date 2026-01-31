@@ -99,3 +99,12 @@ jobs:
       with:
         name: robot-reports
         path: reports
+
+    - name: Publish Robot Framework report to GitHub Pages    # Paso 7: Se publica el reporte en GitHub Pages
+      if: always()
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add docs
+        git commit -m "Actualizacion: Reporte de Robot Framework" || echo "Sin ningun cambio"
+        git push

@@ -25,6 +25,7 @@ Ingresar credenciales validas
     Input Password        ${Password}     ${CONTRASENA}
     Capture Page Screenshot        debug_screen.png
 Hacer Login
+    Capture Page Screenshot        captura_login.png
     Click Element    ${IniciarSesion}
 
 Hacer Logout 
