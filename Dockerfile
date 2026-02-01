@@ -9,8 +9,12 @@ RUN apt-get update && apt-get install -y \
     curl unzip wget \
     openjdk-17-jdk \
     adb \
-    nodejs npm \
     && rm -rf /var/lib/apt/lists/*
+
+# Node 20 LTS
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
 
 # Appium
 RUN npm install -g appium
@@ -27,5 +31,4 @@ COPY . /app
 RUN chmod +x scripts/run-tests.sh
 
 EXPOSE 4723
-
 CMD ["bash", "scripts/run-tests.sh"]
