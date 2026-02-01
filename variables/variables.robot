@@ -4,7 +4,8 @@ Library        AppiumLibrary
 
 *** Variables ***
 # URL del servidor Appium donde se ejecutarán las pruebas en ambiente local
-${REMOTE_URL}     http://localhost:4723
+#${REMOTE_URL}     http://localhost:4723
+${REMOTE_URL}     http://android-emulator:4723
 
 # Usuario y contraseña para casos de prueba de login
 ${USERNAME}        admin@test.com

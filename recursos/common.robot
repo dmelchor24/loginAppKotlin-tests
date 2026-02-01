@@ -10,16 +10,16 @@ Abrir Aplicacion
     Open Application    
     ...    ${REMOTE_URL}                                    # URL del servidor Appium
     ...    platformName=${platformName}                     # Plataforma objetivo (Android)
-    ...    deviceName=${deviceName}                         # ID del dispositivo o emulador
-    ...    automationName=${automationName}                 # Framework de automatización (UiAutomator2)
-    ...    appPackage=${appPackage}                         # Paquete de la aplicación
-    ...    appActivity=${appActivity}                       # Actividad principal
-    ...    avd=${avd}                                       # Android Virtual Device (solo emulador)
-    ...    app=${app}                                       # Ruta del APK (solo CI)
-    ...    newCommandTimeout=${newCommandTimeout}           # Timeout entre comandos
-    ...    adbExecTimeout=${adbExecTimeout}                 # Timeout para ADB
-    ...    autoGrantPermissions=${autoGrantPermissions}     # Otorgar permisos automáticamente
-    ...    noReset=${noReset}                               # Controlar reset de app
+    ...    appium:deviceName=${deviceName}                         # ID del dispositivo o emulador
+    ...    appium:automationName=${automationName}                 # Framework de automatización (UiAutomator2)
+    ...    appium:appPackage=${appPackage}                         # Paquete de la aplicación
+    ...    appium:appActivity=${appActivity}                       # Actividad principal
+    ...    appium:avd=${avd}                                       # Android Virtual Device (solo emulador)
+    ...    appium:app=${app}                                       # Ruta del APK (solo CI)
+    ...    appium:newCommandTimeout=${newCommandTimeout}           # Timeout entre comandos
+    ...    appium:adbExecTimeout=${adbExecTimeout}                 # Timeout para ADB
+    ...    appium:autoGrantPermissions=${autoGrantPermissions}     # Otorgar permisos automáticamente
+    ...    appium:noReset=${noReset}                               # Controlar reset de app
 
 Ingresar credenciales validas
     # Ingresa las credenciales de prueba en los campos correspondientes
