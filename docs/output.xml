@@ -1,37 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.10.12 on linux)" generated="2026-02-01T16:12:31.376207" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.1 (Python 3.10.12 on linux)" generated="2026-02-01T16:55:07.788520" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="/app/tests">
 <suite id="s1-s1" name="Login" source="/app/tests/login.robot">
 <kw name="Abrir Aplicacion" owner="common" type="SETUP">
 <if>
 <branch type="IF" condition="'${ENV}' == 'ci'">
 <kw name="Abrir Aplicacion CI" owner="common">
-<status status="NOT RUN" start="2026-02-01T16:12:31.596989" elapsed="0.000034"/>
+<status status="NOT RUN" start="2026-02-01T16:55:08.336470" elapsed="0.000047"/>
 </kw>
-<status status="NOT RUN" start="2026-02-01T16:12:31.596664" elapsed="0.000417"/>
+<status status="NOT RUN" start="2026-02-01T16:55:08.336073" elapsed="0.000523"/>
 </branch>
 <branch type="ELSE">
 <kw name="Abrir Aplicacion Local" owner="common">
 <kw name="Open Application" owner="AppiumLibrary">
-<kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T16:12:31.693879" level="FAIL">No application is open</msg>
-<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="FAIL" start="2026-02-01T16:12:31.692613" elapsed="0.002733">No application is open</status>
-</kw>
-<msg time="2026-02-01T16:12:31.697613" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T16:12:31.698046" level="FAIL">WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)</msg>
 <arg>${APPIUM_SERVER}</arg>
 <arg>platformName=${platformName}</arg>
 <arg>appium:deviceName=${deviceName}</arg>
@@ -50,164 +31,137 @@ Please check https://appium.io/docs/en/2.19/guides/caps/
 | *Option*            | *Man.* | *Description*     |
 | remote_url          | Yes    | Appium server url |
 | alias               | No     | alias             |</doc>
-<status status="FAIL" start="2026-02-01T16:12:31.597989" elapsed="0.100280">WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)</status>
+<status status="PASS" start="2026-02-01T16:55:08.337731" elapsed="22.067523"/>
 </kw>
-<status status="FAIL" start="2026-02-01T16:12:31.597278" elapsed="0.101278">WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)</status>
+<status status="PASS" start="2026-02-01T16:55:08.336872" elapsed="22.068696"/>
 </kw>
-<status status="FAIL" start="2026-02-01T16:12:31.597122" elapsed="0.101546">WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)</status>
+<status status="PASS" start="2026-02-01T16:55:08.336650" elapsed="22.068987"/>
 </branch>
-<status status="FAIL" start="2026-02-01T16:12:31.596622" elapsed="0.102161">WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)</status>
+<status status="PASS" start="2026-02-01T16:55:08.336023" elapsed="22.069705"/>
 </if>
-<status status="FAIL" start="2026-02-01T16:12:31.596344" elapsed="0.102610">WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)</status>
+<status status="PASS" start="2026-02-01T16:55:08.335682" elapsed="22.070158"/>
 </kw>
 <test id="s1-s1-t1" name="Login exitoso con credenciales validas" line="14">
-<doc>Verifica que un usuario puede iniciar y cerrar sesión con credenciales válidas</doc>
-<tag>pruebas mobile</tag>
-<status status="FAIL" start="2026-02-01T16:12:31.699099" elapsed="0.000939">Parent suite setup failed:
-WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)</status>
-</test>
-<kw name="Cerrar Aplicacion" owner="common" type="TEARDOWN">
+<kw name="Ingresar credenciales validas" owner="common">
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
-<kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T16:12:31.703144" level="FAIL">No application is open</msg>
-<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="FAIL" start="2026-02-01T16:12:31.702933" elapsed="0.000804">No application is open</status>
-</kw>
-<msg time="2026-02-01T16:12:31.705848" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T16:12:31.706060" level="FAIL">No application is open</msg>
+<msg time="2026-02-01T16:55:31.304147" level="INFO">xpath criteria: //*[@content-desc="login_title"]</msg>
 <arg>${TituloAPP}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="FAIL" start="2026-02-01T16:12:31.702298" elapsed="0.003959">No application is open</status>
+<status status="PASS" start="2026-02-01T16:55:30.407624" elapsed="0.896723"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:31.458624" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="email_input"]]</msg>
+<arg>${Email}</arg>
+<arg>25s</arg>
+<doc>Waits until the element specified by the ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T16:55:31.304710" elapsed="0.154145"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:31.586538" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="password_input"]]</msg>
+<arg>${Password}</arg>
+<arg>25s</arg>
+<doc>Waits until the element specified by the ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T16:55:31.459232" elapsed="0.127523"/>
+</kw>
+<kw name="Input Text" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:31.589925" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[.//*[@content-desc="email_input"]]'</msg>
+<msg time="2026-02-01T16:55:31.715054" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="email_input"]]</msg>
+<arg>${Email}</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T16:55:31.587069" elapsed="0.128145"/>
+</kw>
+<kw name="Input Password" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:31.718405" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[.//*[@content-desc="password_input"]]'</msg>
+<msg time="2026-02-01T16:55:32.232328" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="password_input"]]</msg>
+<arg>${Password}</arg>
+<arg>${CONTRASENA}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T16:55:31.715529" elapsed="0.516959"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:33.012132" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="pantalla_login.png"&gt;&lt;img src="pantalla_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>pantalla_login.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<status status="PASS" start="2026-02-01T16:55:32.232845" elapsed="0.779486"/>
+</kw>
+<status status="PASS" start="2026-02-01T16:55:30.407144" elapsed="2.605355"/>
+</kw>
+<kw name="Hacer Login" owner="common">
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:33.137973" level="INFO">xpath criteria: //*[@content-desc="login_button"]</msg>
+<arg>${IniciarSesion}</arg>
+<arg>25s</arg>
+<doc>Waits until the element specified by the ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T16:55:33.013330" elapsed="0.124799"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:33.379094" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="captura_login.png"&gt;&lt;img src="captura_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>captura_login.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<status status="PASS" start="2026-02-01T16:55:33.138432" elapsed="0.240843"/>
+</kw>
+<kw name="Click Element" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:33.382106" level="INFO">Clicking element 'xpath=//*[@content-desc="login_button"]'.</msg>
+<msg time="2026-02-01T16:55:33.656773" level="INFO">xpath criteria: //*[@content-desc="login_button"]</msg>
+<arg>${IniciarSesion}</arg>
+<doc>Clicks the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T16:55:33.379548" elapsed="0.277419"/>
+</kw>
+<status status="PASS" start="2026-02-01T16:55:33.012880" elapsed="0.644263"/>
+</kw>
+<kw name="Hacer Logout" owner="common">
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:34.729631" level="INFO">xpath criteria: //*[@content-desc="logout_button_main"]</msg>
+<arg>${LOGOUT}</arg>
+<arg>25s</arg>
+<doc>Waits until the element specified by the ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T16:55:33.658139" elapsed="1.071723"/>
+</kw>
+<kw name="Click Element" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:34.733230" level="INFO">Clicking element 'xpath=//*[@content-desc="logout_button_main"]'.</msg>
+<msg time="2026-02-01T16:55:35.007373" level="INFO">xpath criteria: //*[@content-desc="logout_button_main"]</msg>
+<arg>${LOGOUT}</arg>
+<doc>Clicks the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T16:55:34.730235" elapsed="0.277297"/>
+</kw>
+<status status="PASS" start="2026-02-01T16:55:33.657537" elapsed="1.350166"/>
+</kw>
+<doc>Verifica que un usuario puede iniciar y cerrar sesión con credenciales válidas</doc>
+<tag>pruebas mobile</tag>
+<status status="PASS" start="2026-02-01T16:55:30.405970" elapsed="4.601959"/>
+</test>
+<kw name="Cerrar Aplicacion" owner="common" type="TEARDOWN">
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2026-02-01T16:55:35.536513" level="INFO">xpath criteria: //*[@content-desc="login_title"]</msg>
+<arg>${TituloAPP}</arg>
+<arg>25s</arg>
+<doc>Waits until the element specified by the ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T16:55:35.009347" elapsed="0.527353"/>
 </kw>
 <kw name="Close Application" owner="AppiumLibrary">
-<kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T16:12:31.706942" level="FAIL">No application is open</msg>
-<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="FAIL" start="2026-02-01T16:12:31.706686" elapsed="0.000478">No application is open</status>
-</kw>
-<msg time="2026-02-01T16:12:31.709655" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T16:12:31.710086" level="FAIL">No application is open</msg>
 <doc>Closes the current application and the webdriver session.</doc>
-<status status="FAIL" start="2026-02-01T16:12:31.706425" elapsed="0.003825">No application is open</status>
+<status status="PASS" start="2026-02-01T16:55:35.537021" elapsed="2.047492"/>
 </kw>
-<status status="FAIL" start="2026-02-01T16:12:31.702020" elapsed="0.008393">Several failures occurred:
-
-1) No application is open
-
-2) No application is open</status>
+<status status="PASS" start="2026-02-01T16:55:35.008996" elapsed="2.575741"/>
 </kw>
-<status status="FAIL" start="2026-02-01T16:12:31.418854" elapsed="0.291633">Suite setup failed:
-WebDriverException: Message: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-Stacktrace:
-UnknownError: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at getResponseForW3CError (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/errors.ts:1103:34)
-    at asyncHandler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/lib/protocol/protocol.ts:507:57)
-The above error is caused by
-Error: Neither ANDROID_HOME nor ANDROID_SDK_ROOT environment variable was exported. Read https://developer.android.com/studio/command-line/variables for more details
-    at requireSdkRoot (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/helpers.ts:53:11)
-    at Function.createADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-adb/lib/adb.ts:137:39)
-    at AndroidUiautomator2Driver.createBaseADB (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/utils.ts:151:20)
-    at AndroidUiautomator2Driver.getDeviceInfoFromCaps (/root/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/lib/commands/device/common.ts:33:45)
-    at AndroidUiautomator2Driver.createSession (/root/.appium/node_modules/appium-uiautomator2-driver/lib/driver.ts:367:41)
-    at AppiumDriver.createSession (/usr/lib/node_modules/appium/lib/appium.js:360:35)
-
-Also suite teardown failed:
-Several failures occurred:
-
-1) No application is open
-
-2) No application is open</status>
+<status status="PASS" start="2026-02-01T16:55:07.837461" elapsed="29.747434"/>
 </suite>
-<status status="FAIL" start="2026-02-01T16:12:31.380889" elapsed="0.330839"/>
+<status status="PASS" start="2026-02-01T16:55:07.791973" elapsed="29.793959"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">pruebas mobile</stat>
+<stat pass="1" fail="0" skip="0">pruebas mobile</stat>
 </tag>
 <suite>
-<stat name="Tests" id="s1" pass="0" fail="1" skip="0">Tests</stat>
-<stat name="Login" id="s1-s1" pass="0" fail="1" skip="0">Tests.Login</stat>
+<stat name="Tests" id="s1" pass="1" fail="0" skip="0">Tests</stat>
+<stat name="Login" id="s1-s1" pass="1" fail="0" skip="0">Tests.Login</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2026-02-01T16:12:31.697613" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T16:12:31.705848" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T16:12:31.709655" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
 </errors>
 </robot>
