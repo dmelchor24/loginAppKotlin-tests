@@ -1,197 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.10.12 on linux)" generated="2026-02-01T06:46:28.445614" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.1 (Python 3.10.12 on linux)" generated="2026-02-01T07:01:45.541519" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="/app/tests">
 <suite id="s1-s1" name="Login" source="/app/tests/login.robot">
 <kw name="Abrir Aplicacion" owner="common" type="SETUP">
 <kw name="Open Application" owner="AppiumLibrary">
+<msg time="2026-02-01T07:01:45.784814" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused")': /session</msg>
+<msg time="2026-02-01T07:01:45.785600" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused")': /session</msg>
+<msg time="2026-02-01T07:01:45.786534" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused")': /session</msg>
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T06:46:28.746085" level="FAIL">No application is open</msg>
+<msg time="2026-02-01T07:01:45.787954" level="FAIL">No application is open</msg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="FAIL" start="2026-02-01T06:46:28.745673" elapsed="0.002095">No application is open</status>
+<status status="FAIL" start="2026-02-01T07:01:45.787639" elapsed="0.003179">No application is open</status>
 </kw>
-<msg time="2026-02-01T06:46:28.750182" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T06:46:28.750859" level="FAIL">WebDriverException: Message: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-Stacktrace:
-UnknownCommandError: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-    at catch404Handler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/express/middleware.js:154:65)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at next (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:157:13)
-    at Route.dispatch (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:117:3)
-    at handle (/usr/lib/node_modules/appium/node_modules/router/index.js:435:11)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:295:15
-    at param (/usr/lib/node_modules/appium/node_modules/router/index.js:600:14)
-    at param (/usr/lib/node_modules/appium/node_modules/router/index.js:610:14)
-    at processParams (/usr/lib/node_modules/appium/node_modules/router/index.js:664:3)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at logger (/usr/lib/node_modules/appium/node_modules/morgan/index.js:144:5)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at trimPrefix (/usr/lib/node_modules/appium/node_modules/router/index.js:342:13)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:297:9
-    at processParams (/usr/lib/node_modules/appium/node_modules/router/index.js:582:12)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at /usr/lib/node_modules/appium/node_modules/body-parser/lib/read.js:171:5
-    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
-    at invokeCallback (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:238:16)
-    at done (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:227:7)
-    at IncomingMessage.onEnd (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:287:7)</msg>
+<msg time="2026-02-01T07:01:45.792995" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-02-01T07:01:45.793242" level="FAIL">MaxRetryError: HTTPConnectionPool(host='android-emulator', port=4723): Max retries exceeded with url: /session (Caused by NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused"))</msg>
 <arg>${REMOTE_URL}</arg>
 <arg>platformName=${platformName}</arg>
-<arg>deviceName=${deviceName}</arg>
-<arg>automationName=${automationName}</arg>
-<arg>appPackage=${appPackage}</arg>
-<arg>appActivity=${appActivity}</arg>
-<arg>avd=${avd}</arg>
-<arg>app=${app}</arg>
-<arg>newCommandTimeout=${newCommandTimeout}</arg>
-<arg>adbExecTimeout=${adbExecTimeout}</arg>
-<arg>autoGrantPermissions=${autoGrantPermissions}</arg>
-<arg>noReset=${noReset}</arg>
+<arg>appium:deviceName=${deviceName}</arg>
+<arg>appium:automationName=${automationName}</arg>
+<arg>appium:appPackage=${appPackage}</arg>
+<arg>appium:appActivity=${appActivity}</arg>
+<arg>appium:avd=${avd}</arg>
+<arg>appium:app=${app}</arg>
+<arg>appium:newCommandTimeout=${newCommandTimeout}</arg>
+<arg>appium:adbExecTimeout=${adbExecTimeout}</arg>
+<arg>appium:autoGrantPermissions=${autoGrantPermissions}</arg>
+<arg>appium:noReset=${noReset}</arg>
 <doc>Opens a new application to the given Appium server.
 Capabilities of appium server, Android and iOS,
 Please check https://appium.io/docs/en/2.19/guides/caps/
 | *Option*            | *Man.* | *Description*     |
 | remote_url          | Yes    | Appium server url |
 | alias               | No     | alias             |</doc>
-<status status="FAIL" start="2026-02-01T06:46:28.690807" elapsed="0.060272">WebDriverException: Message: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-Stacktrace:
-UnknownCommandError: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-    at catch404Handler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/express/middleware.js:154:65)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at next (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:157:13)
-    at Route.dispatch (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:117:3)
-    at handle (/usr/lib/node_modules/appium/node_modules/router/index.js:435:11)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:295:15
-    at param (/usr/lib/node_modules/appium/node_modules/router/index.js:600...
-    [ Message content over the limit has been removed. ]
-...essParams (/usr/lib/node_modules/appium/node_modules/router/index.js:664:3)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at logger (/usr/lib/node_modules/appium/node_modules/morgan/index.js:144:5)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at trimPrefix (/usr/lib/node_modules/appium/node_modules/router/index.js:342:13)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:297:9
-    at processParams (/usr/lib/node_modules/appium/node_modules/router/index.js:582:12)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at /usr/lib/node_modules/appium/node_modules/body-parser/lib/read.js:171:5
-    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
-    at invokeCallback (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:238:16)
-    at done (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:227:7)
-    at IncomingMessage.onEnd (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:287:7)</status>
+<status status="FAIL" start="2026-02-01T07:01:45.780056" elapsed="0.013635">MaxRetryError: HTTPConnectionPool(host='android-emulator', port=4723): Max retries exceeded with url: /session (Caused by NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused"))</status>
 </kw>
-<status status="FAIL" start="2026-02-01T06:46:28.689368" elapsed="0.062016">WebDriverException: Message: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-Stacktrace:
-UnknownCommandError: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-    at catch404Handler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/express/middleware.js:154:65)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at next (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:157:13)
-    at Route.dispatch (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:117:3)
-    at handle (/usr/lib/node_modules/appium/node_modules/router/index.js:435:11)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:295:15
-    at param (/usr/lib/node_modules/appium/node_modules/router/index.js:600...
-    [ Message content over the limit has been removed. ]
-...essParams (/usr/lib/node_modules/appium/node_modules/router/index.js:664:3)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at logger (/usr/lib/node_modules/appium/node_modules/morgan/index.js:144:5)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at trimPrefix (/usr/lib/node_modules/appium/node_modules/router/index.js:342:13)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:297:9
-    at processParams (/usr/lib/node_modules/appium/node_modules/router/index.js:582:12)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at /usr/lib/node_modules/appium/node_modules/body-parser/lib/read.js:171:5
-    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
-    at invokeCallback (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:238:16)
-    at done (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:227:7)
-    at IncomingMessage.onEnd (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:287:7)</status>
+<status status="FAIL" start="2026-02-01T07:01:45.779169" elapsed="0.014757">MaxRetryError: HTTPConnectionPool(host='android-emulator', port=4723): Max retries exceeded with url: /session (Caused by NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused"))</status>
 </kw>
 <test id="s1-s1-t1" name="Login exitoso con credenciales validas" line="14">
 <doc>Verifica que un usuario puede iniciar y cerrar sesión con credenciales válidas</doc>
 <tag>pruebas mobile</tag>
-<status status="FAIL" start="2026-02-01T06:46:28.751606" elapsed="0.000902">Parent suite setup failed:
-WebDriverException: Message: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-Stacktrace:
-UnknownCommandError: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-    at catch404Handler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/express/middleware.js:154:65)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at next (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:157:13)
-    at Route.dispatch (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:117:3)
-    at handle (/usr/lib/node_modules/appium/node_modules/router/index.js:435:11)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:295:15
-    at param (/usr/lib/node_modules/appium/node_modules/router/index.js:600...
-    [ Message content over the limit has been removed. ]
-...essParams (/usr/lib/node_modules/appium/node_modules/router/index.js:664:3)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at logger (/usr/lib/node_modules/appium/node_modules/morgan/index.js:144:5)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at trimPrefix (/usr/lib/node_modules/appium/node_modules/router/index.js:342:13)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:297:9
-    at processParams (/usr/lib/node_modules/appium/node_modules/router/index.js:582:12)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at /usr/lib/node_modules/appium/node_modules/body-parser/lib/read.js:171:5
-    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
-    at invokeCallback (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:238:16)
-    at done (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:227:7)
-    at IncomingMessage.onEnd (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:287:7)</status>
+<status status="FAIL" start="2026-02-01T07:01:45.794051" elapsed="0.000814">Parent suite setup failed:
+MaxRetryError: HTTPConnectionPool(host='android-emulator', port=4723): Max retries exceeded with url: /session (Caused by NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused"))</status>
 </test>
 <kw name="Cerrar Aplicacion" owner="common" type="TEARDOWN">
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T06:46:28.754507" level="FAIL">No application is open</msg>
+<msg time="2026-02-01T07:01:45.796822" level="FAIL">No application is open</msg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="FAIL" start="2026-02-01T06:46:28.754286" elapsed="0.000806">No application is open</status>
+<status status="FAIL" start="2026-02-01T07:01:45.796542" elapsed="0.001195">No application is open</status>
 </kw>
-<msg time="2026-02-01T06:46:28.757106" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T06:46:28.757362" level="FAIL">No application is open</msg>
+<msg time="2026-02-01T07:01:45.800003" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-02-01T07:01:45.800241" level="FAIL">No application is open</msg>
 <arg>${TituloAPP}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="FAIL" start="2026-02-01T06:46:28.753826" elapsed="0.003728">No application is open</status>
+<status status="FAIL" start="2026-02-01T07:01:45.796080" elapsed="0.004360">No application is open</status>
 </kw>
 <kw name="Close Application" owner="AppiumLibrary">
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T06:46:28.758142" level="FAIL">No application is open</msg>
+<msg time="2026-02-01T07:01:45.801103" level="FAIL">No application is open</msg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="FAIL" start="2026-02-01T06:46:28.757961" elapsed="0.000370">No application is open</status>
+<status status="FAIL" start="2026-02-01T07:01:45.800890" elapsed="0.000438">No application is open</status>
 </kw>
-<msg time="2026-02-01T06:46:28.760364" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T06:46:28.760611" level="FAIL">No application is open</msg>
+<msg time="2026-02-01T07:01:45.803557" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-02-01T07:01:45.803815" level="FAIL">No application is open</msg>
 <doc>Closes the current application and the webdriver session.</doc>
-<status status="FAIL" start="2026-02-01T06:46:28.757738" elapsed="0.003041">No application is open</status>
+<status status="FAIL" start="2026-02-01T07:01:45.800616" elapsed="0.003365">No application is open</status>
 </kw>
-<status status="FAIL" start="2026-02-01T06:46:28.753499" elapsed="0.007440">Several failures occurred:
+<status status="FAIL" start="2026-02-01T07:01:45.795801" elapsed="0.008362">Several failures occurred:
 
 1) No application is open
 
 2) No application is open</status>
 </kw>
-<status status="FAIL" start="2026-02-01T06:46:28.489824" elapsed="0.271198">Suite setup failed:
-WebDriverException: Message: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-Stacktrace:
-UnknownCommandError: The requested resource could not be found, or a request was received using an HTTP method that is not supported by the mapped resource.
-    at catch404Handler (/usr/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/express/middleware.js:154:65)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at next (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:157:13)
-    at Route.dispatch (/usr/lib/node_modules/appium/node_modules/router/lib/route.js:117:3)
-    at handle (/usr/lib/node_modules/appium/node_modules/router/index.js:435:11)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:295:15
-    at param (/usr/lib/node_modules/appium/node_modules/router/index.js:600...
-    [ Message content over the limit has been removed. ]
-...essParams (/usr/lib/node_modules/appium/node_modules/router/index.js:664:3)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at logger (/usr/lib/node_modules/appium/node_modules/morgan/index.js:144:5)
-    at Layer.handleRequest (/usr/lib/node_modules/appium/node_modules/router/lib/layer.js:152:17)
-    at trimPrefix (/usr/lib/node_modules/appium/node_modules/router/index.js:342:13)
-    at /usr/lib/node_modules/appium/node_modules/router/index.js:297:9
-    at processParams (/usr/lib/node_modules/appium/node_modules/router/index.js:582:12)
-    at next (/usr/lib/node_modules/appium/node_modules/router/index.js:291:5)
-    at /usr/lib/node_modules/appium/node_modules/body-parser/lib/read.js:171:5
-    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
-    at invokeCallback (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:238:16)
-    at done (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:227:7)
-    at IncomingMessage.onEnd (/usr/lib/node_modules/appium/node_modules/raw-body/index.js:287:7)
+<status status="FAIL" start="2026-02-01T07:01:45.587228" elapsed="0.217014">Suite setup failed:
+MaxRetryError: HTTPConnectionPool(host='android-emulator', port=4723): Max retries exceeded with url: /session (Caused by NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused"))
 
 Also suite teardown failed:
 Several failures occurred:
@@ -200,7 +83,7 @@ Several failures occurred:
 
 2) No application is open</status>
 </suite>
-<status status="FAIL" start="2026-02-01T06:46:28.448835" elapsed="0.313187"/>
+<status status="FAIL" start="2026-02-01T07:01:45.544760" elapsed="0.260437"/>
 </suite>
 <statistics>
 <total>
@@ -215,8 +98,11 @@ Several failures occurred:
 </suite>
 </statistics>
 <errors>
-<msg time="2026-02-01T06:46:28.750182" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T06:46:28.757106" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg time="2026-02-01T06:46:28.760364" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-02-01T07:01:45.784814" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused")': /session</msg>
+<msg time="2026-02-01T07:01:45.785600" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused")': /session</msg>
+<msg time="2026-02-01T07:01:45.786534" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='android-emulator', port=4723): Failed to establish a new connection: [Errno 111] Connection refused")': /session</msg>
+<msg time="2026-02-01T07:01:45.792995" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-02-01T07:01:45.800003" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg time="2026-02-01T07:01:45.803557" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
 </errors>
 </robot>
