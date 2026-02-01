@@ -17,6 +17,7 @@ services:
       - ENV=ci
       - APK_PATH=/app/app-debug.apk
     volumes:
+      - ./app-debug.apk:/app/app-debug.apk
       - ./reports:/app/reports
       - ./docs:/app/docs
     ports:
