@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.1 (Python 3.10.12 on linux)" generated="2026-02-01T16:55:07.788520" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.1 (Python 3.10.12 on linux)" generated="2026-02-01T17:53:11.076116" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="/app/tests">
 <suite id="s1-s1" name="Login" source="/app/tests/login.robot">
 <kw name="Abrir Aplicacion" owner="common" type="SETUP">
 <if>
 <branch type="IF" condition="'${ENV}' == 'ci'">
 <kw name="Abrir Aplicacion CI" owner="common">
-<status status="NOT RUN" start="2026-02-01T16:55:08.336470" elapsed="0.000047"/>
+<status status="NOT RUN" start="2026-02-01T17:53:11.355073" elapsed="0.000031"/>
 </kw>
-<status status="NOT RUN" start="2026-02-01T16:55:08.336073" elapsed="0.000523"/>
+<status status="NOT RUN" start="2026-02-01T17:53:11.354766" elapsed="0.000390"/>
 </branch>
 <branch type="ELSE">
 <kw name="Abrir Aplicacion Local" owner="common">
@@ -31,124 +31,124 @@ Please check https://appium.io/docs/en/2.19/guides/caps/
 | *Option*            | *Man.* | *Description*     |
 | remote_url          | Yes    | Appium server url |
 | alias               | No     | alias             |</doc>
-<status status="PASS" start="2026-02-01T16:55:08.337731" elapsed="22.067523"/>
+<status status="PASS" start="2026-02-01T17:53:11.356008" elapsed="20.894068"/>
 </kw>
-<status status="PASS" start="2026-02-01T16:55:08.336872" elapsed="22.068696"/>
+<status status="PASS" start="2026-02-01T17:53:11.355340" elapsed="20.894997"/>
 </kw>
-<status status="PASS" start="2026-02-01T16:55:08.336650" elapsed="22.068987"/>
+<status status="PASS" start="2026-02-01T17:53:11.355194" elapsed="20.895196"/>
 </branch>
-<status status="PASS" start="2026-02-01T16:55:08.336023" elapsed="22.069705"/>
+<status status="PASS" start="2026-02-01T17:53:11.354732" elapsed="20.895707"/>
 </if>
-<status status="PASS" start="2026-02-01T16:55:08.335682" elapsed="22.070158"/>
+<status status="PASS" start="2026-02-01T17:53:11.354525" elapsed="20.896014"/>
 </kw>
 <test id="s1-s1-t1" name="Login exitoso con credenciales validas" line="14">
 <kw name="Ingresar credenciales validas" owner="common">
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:31.304147" level="INFO">xpath criteria: //*[@content-desc="login_title"]</msg>
+<msg time="2026-02-01T17:53:33.734080" level="INFO">xpath criteria: //*[@content-desc="login_title"]</msg>
 <arg>${TituloAPP}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="PASS" start="2026-02-01T16:55:30.407624" elapsed="0.896723"/>
+<status status="PASS" start="2026-02-01T17:53:32.252301" elapsed="1.481936"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:31.458624" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="email_input"]]</msg>
+<msg time="2026-02-01T17:53:33.905693" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="email_input"]]</msg>
 <arg>${Email}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="PASS" start="2026-02-01T16:55:31.304710" elapsed="0.154145"/>
+<status status="PASS" start="2026-02-01T17:53:33.734523" elapsed="0.171566"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:31.586538" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="password_input"]]</msg>
+<msg time="2026-02-01T17:53:34.066858" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="password_input"]]</msg>
 <arg>${Password}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="PASS" start="2026-02-01T16:55:31.459232" elapsed="0.127523"/>
+<status status="PASS" start="2026-02-01T17:53:33.906720" elapsed="0.160323"/>
 </kw>
 <kw name="Input Text" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:31.589925" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[.//*[@content-desc="email_input"]]'</msg>
-<msg time="2026-02-01T16:55:31.715054" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="email_input"]]</msg>
+<msg time="2026-02-01T17:53:34.069954" level="INFO">Typing text 'admin@test.com' into text field 'xpath=//android.widget.EditText[.//*[@content-desc="email_input"]]'</msg>
+<msg time="2026-02-01T17:53:34.240376" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="email_input"]]</msg>
 <arg>${Email}</arg>
 <arg>${USERNAME}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-02-01T16:55:31.587069" elapsed="0.128145"/>
+<status status="PASS" start="2026-02-01T17:53:34.067326" elapsed="0.173190"/>
 </kw>
 <kw name="Input Password" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:31.718405" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[.//*[@content-desc="password_input"]]'</msg>
-<msg time="2026-02-01T16:55:32.232328" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="password_input"]]</msg>
+<msg time="2026-02-01T17:53:34.244001" level="INFO">Typing password into text field 'xpath=//android.widget.EditText[.//*[@content-desc="password_input"]]'</msg>
+<msg time="2026-02-01T17:53:34.791793" level="INFO">xpath criteria: //android.widget.EditText[.//*[@content-desc="password_input"]]</msg>
 <arg>${Password}</arg>
 <arg>${CONTRASENA}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-02-01T16:55:31.715529" elapsed="0.516959"/>
+<status status="PASS" start="2026-02-01T17:53:34.240781" elapsed="0.551171"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:33.012132" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="pantalla_login.png"&gt;&lt;img src="pantalla_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-02-01T17:53:35.591378" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="pantalla_login.png"&gt;&lt;img src="pantalla_login.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>pantalla_login.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="PASS" start="2026-02-01T16:55:32.232845" elapsed="0.779486"/>
+<status status="PASS" start="2026-02-01T17:53:34.792284" elapsed="0.799270"/>
 </kw>
-<status status="PASS" start="2026-02-01T16:55:30.407144" elapsed="2.605355"/>
+<status status="PASS" start="2026-02-01T17:53:32.251805" elapsed="3.339893"/>
 </kw>
 <kw name="Hacer Login" owner="common">
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:33.137973" level="INFO">xpath criteria: //*[@content-desc="login_button"]</msg>
+<msg time="2026-02-01T17:53:35.741801" level="INFO">xpath criteria: //*[@content-desc="login_button"]</msg>
 <arg>${IniciarSesion}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="PASS" start="2026-02-01T16:55:33.013330" elapsed="0.124799"/>
+<status status="PASS" start="2026-02-01T17:53:35.592528" elapsed="0.149417"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:33.379094" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="captura_login.png"&gt;&lt;img src="captura_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-02-01T17:53:36.031488" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="captura_login.png"&gt;&lt;img src="captura_login.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>captura_login.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<status status="PASS" start="2026-02-01T16:55:33.138432" elapsed="0.240843"/>
+<status status="PASS" start="2026-02-01T17:53:35.742250" elapsed="0.289422"/>
 </kw>
 <kw name="Click Element" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:33.382106" level="INFO">Clicking element 'xpath=//*[@content-desc="login_button"]'.</msg>
-<msg time="2026-02-01T16:55:33.656773" level="INFO">xpath criteria: //*[@content-desc="login_button"]</msg>
+<msg time="2026-02-01T17:53:36.034719" level="INFO">Clicking element 'xpath=//*[@content-desc="login_button"]'.</msg>
+<msg time="2026-02-01T17:53:37.064583" level="INFO">xpath criteria: //*[@content-desc="login_button"]</msg>
 <arg>${IniciarSesion}</arg>
 <doc>Clicks the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-02-01T16:55:33.379548" elapsed="0.277419"/>
+<status status="PASS" start="2026-02-01T17:53:36.031936" elapsed="1.032778"/>
 </kw>
-<status status="PASS" start="2026-02-01T16:55:33.012880" elapsed="0.644263"/>
+<status status="PASS" start="2026-02-01T17:53:35.592059" elapsed="1.472786"/>
 </kw>
 <kw name="Hacer Logout" owner="common">
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:34.729631" level="INFO">xpath criteria: //*[@content-desc="logout_button_main"]</msg>
+<msg time="2026-02-01T17:53:37.528707" level="INFO">xpath criteria: //*[@content-desc="logout_button_main"]</msg>
 <arg>${LOGOUT}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="PASS" start="2026-02-01T16:55:33.658139" elapsed="1.071723"/>
+<status status="PASS" start="2026-02-01T17:53:37.065558" elapsed="0.463377"/>
 </kw>
 <kw name="Click Element" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:34.733230" level="INFO">Clicking element 'xpath=//*[@content-desc="logout_button_main"]'.</msg>
-<msg time="2026-02-01T16:55:35.007373" level="INFO">xpath criteria: //*[@content-desc="logout_button_main"]</msg>
+<msg time="2026-02-01T17:53:37.531885" level="INFO">Clicking element 'xpath=//*[@content-desc="logout_button_main"]'.</msg>
+<msg time="2026-02-01T17:53:37.814051" level="INFO">xpath criteria: //*[@content-desc="logout_button_main"]</msg>
 <arg>${LOGOUT}</arg>
 <doc>Clicks the element identified by ``locator``.</doc>
-<status status="PASS" start="2026-02-01T16:55:34.730235" elapsed="0.277297"/>
+<status status="PASS" start="2026-02-01T17:53:37.529267" elapsed="0.284942"/>
 </kw>
-<status status="PASS" start="2026-02-01T16:55:33.657537" elapsed="1.350166"/>
+<status status="PASS" start="2026-02-01T17:53:37.065169" elapsed="0.749187"/>
 </kw>
 <doc>Verifica que un usuario puede iniciar y cerrar sesión con credenciales válidas</doc>
 <tag>pruebas mobile</tag>
-<status status="PASS" start="2026-02-01T16:55:30.405970" elapsed="4.601959"/>
+<status status="PASS" start="2026-02-01T17:53:32.250668" elapsed="5.563901"/>
 </test>
 <kw name="Cerrar Aplicacion" owner="common" type="TEARDOWN">
 <kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
-<msg time="2026-02-01T16:55:35.536513" level="INFO">xpath criteria: //*[@content-desc="login_title"]</msg>
+<msg time="2026-02-01T17:53:38.712151" level="INFO">xpath criteria: //*[@content-desc="login_title"]</msg>
 <arg>${TituloAPP}</arg>
 <arg>25s</arg>
 <doc>Waits until the element specified by the ``locator`` is visible.</doc>
-<status status="PASS" start="2026-02-01T16:55:35.009347" elapsed="0.527353"/>
+<status status="PASS" start="2026-02-01T17:53:37.815940" elapsed="0.896380"/>
 </kw>
 <kw name="Close Application" owner="AppiumLibrary">
 <doc>Closes the current application and the webdriver session.</doc>
-<status status="PASS" start="2026-02-01T16:55:35.537021" elapsed="2.047492"/>
+<status status="PASS" start="2026-02-01T17:53:38.712631" elapsed="2.407833"/>
 </kw>
-<status status="PASS" start="2026-02-01T16:55:35.008996" elapsed="2.575741"/>
+<status status="PASS" start="2026-02-01T17:53:37.815627" elapsed="3.304986"/>
 </kw>
-<status status="PASS" start="2026-02-01T16:55:07.837461" elapsed="29.747434"/>
+<status status="PASS" start="2026-02-01T17:53:11.136177" elapsed="29.984558"/>
 </suite>
-<status status="PASS" start="2026-02-01T16:55:07.791973" elapsed="29.793959"/>
+<status status="PASS" start="2026-02-01T17:53:11.079487" elapsed="30.044098"/>
 </suite>
 <statistics>
 <total>
