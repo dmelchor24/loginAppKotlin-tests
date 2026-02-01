@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Definir el entorno de ejecución desde variable de entorno
 # Por defecto: "local" (para desarrollo)
 # En CI/CD: "ci" (para integración continua)
-ENV = os.getenv("ENV", "local")
+ENV = os.getenv("ENV", "ci")
 cap_file = f"android-{ENV}.py"
 
 # Validar que el archivo de capabilities existe
@@ -90,17 +90,27 @@ if os.path.exists(report_path):
         f.write(report_content)
 
     # Copiar archivos al directorio docs/ con nombres estándar para GitHub Pages
-    print("🌐 Publicando reportes en GitHub Pages...")
+    print("🌐 Copiando reportes HTML...")
     shutil.copy(f"{reports_dir}/{report_file}", f"{docs_dir}/index.html")
     shutil.copy(f"{reports_dir}/{log_file}", f"{docs_dir}/log.html")
     shutil.copy(f"{reports_dir}/{output_file}", f"{docs_dir}/output.xml")
+
+    # Copiar los screenshots a docs
+    print("🖼️ Copiando screenshots al directorio docs/...")
+
+    for file in os.listdir(reports_dir):
+        if file.lower().endswith((".png", ".jpg", ".jpeg", ".webp")):
+            shutil.copy(
+                os.path.join(reports_dir, file),
+                os.path.join(docs_dir, file)
+            )
 
     # Almacenar el timestamp de la última ejecución para referencia
     with open(f"{docs_dir}/.last_run.txt", "w") as f:
         f.write(timestamp)
 
     print("✅ Robot Framework - Ejecución completada")
-    print("📄 Reportes publicados correctamente en GitHub Pages")
+    print("📄 Reportes y screenshots publicados correctamente en GitHub Pages")
 else:
     print("⚠️ No se generó reporte HTML")
     print("   Posible fallo en la inicialización o configuración")
