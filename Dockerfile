@@ -17,7 +17,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && npm install -g npm@latest
 
 # Appium
-RUN npm install -g appium
+RUN npm install -g appium@3.1.2
 RUN appium driver install uiautomator2
 
 # Robot Framework

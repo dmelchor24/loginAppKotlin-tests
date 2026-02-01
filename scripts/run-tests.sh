@@ -70,13 +70,27 @@ fi
 
 # Iniciar Appium en segundo plano con nivel de log mínimo (solo errores)
 echo "🚀 Iniciando servidor Appium..."
-appium --log-level error &
+appium --address 0.0.0.0 --port 4723 --log-level error &
 APPIUM_PID=$!
 echo "✅ Appium iniciado con PID: $APPIUM_PID"
 
 # Esperar a que Appium se inicialice completamente, 15 segundos es tiempo suficiente para que el servidor esté listo
-echo "⏳ Esperando inicialización completa de Appium..."
-sleep 15
+echo "🔍 Verificando que Appium esté arriba..."
+APPIUM_READY=false
+for i in {1..10}; do
+  if curl -s http://localhost:4723/status > /dev/null; then
+    echo "✅ Appium listo"
+    APPIUM_READY=true
+    break
+  fi
+  echo "⏳ Appium no responde aún..."
+  sleep 5
+done
+
+if [ "$APPIUM_READY" != "true" ]; then
+  echo "❌ Appium no pudo iniciar correctamente"
+  exit 1
+fi
 
 # Ejecutar el script de Python que maneja Robot Framework
 # Capturar el código de salida para determinar éxito o fallo

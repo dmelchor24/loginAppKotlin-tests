@@ -6,9 +6,16 @@ Resource       ../elementos/elementos.robot         # Localizadores de elementos
 
 *** Keywords ***
 Abrir Aplicacion
+    IF    '${ENV}' == 'ci'
+        Abrir Aplicacion CI
+    ELSE
+        Abrir Aplicacion Local
+    END
+
+Abrir Aplicacion Local
     # Utiliza todas las capacidades definidas en el archivo de capabilities correspondiente
     Open Application    
-    ...    ${REMOTE_URL}                                    # URL del servidor Appium
+    ...    ${APPIUM_SERVER}                                    # URL del servidor Appium
     ...    platformName=${platformName}                     # Plataforma objetivo (Android)
     ...    appium:deviceName=${deviceName}                         # ID del dispositivo o emulador
     ...    appium:automationName=${automationName}                 # Framework de automatización (UiAutomator2)
@@ -19,6 +26,17 @@ Abrir Aplicacion
     ...    appium:newCommandTimeout=${newCommandTimeout}           # Timeout entre comandos
     ...    appium:adbExecTimeout=${adbExecTimeout}                 # Timeout para ADB
     ...    appium:autoGrantPermissions=${autoGrantPermissions}     # Otorgar permisos automáticamente
+    ...    appium:noReset=${noReset}
+
+Abrir Aplicacion CI
+    # Utiliza todas las capacidades definidas en el archivo de capabilities correspondiente
+    Open Application    
+    ...    ${APPIUM_SERVER}                                    # URL del servidor Appium
+    ...    platformName=${platformName}                     # Plataforma objetivo (Android)
+    ...    appium:deviceName=${deviceName}                         # ID del dispositivo o emulador
+    ...    appium:automationName=${automationName}                 # Framework de automatización (UiAutomator2)
+    ...    appium:appPackage=${appPackage}                         # Paquete de la aplicación
+    ...    appium:appActivity=${appActivity}                       # Actividad principal
     ...    appium:noReset=${noReset}                               # Controlar reset de app
 
 Ingresar credenciales validas

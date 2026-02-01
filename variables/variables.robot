@@ -4,8 +4,7 @@ Library        AppiumLibrary
 
 *** Variables ***
 # URL del servidor Appium donde se ejecutarán las pruebas en ambiente local
-#${REMOTE_URL}     http://localhost:4723
-${REMOTE_URL}     http://android-emulator:4723
+${APPIUM_SERVER}     http://localhost:4723
 
 # Usuario y contraseña para casos de prueba de login
 ${USERNAME}        admin@test.com
@@ -24,3 +23,4 @@ ${newCommandTimeout}      ${None}        # Timeout entre comandos Appium
 ${adbExecTimeout}         ${None}        # Timeout para comandos ADB
 ${autoGrantPermissions}   ${None}        # Otorgar permisos automáticamente
 ${noReset}                ${None}        # Controla si resetear la app entre pruebas
+${ENV}                    ${None}
