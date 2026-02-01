@@ -15,54 +15,54 @@ cleanup() {
         echo "🔴 Terminando Appium (PID: $APPIUM_PID)"
         kill $APPIUM_PID 2>/dev/null || true
     fi
-    
-    # Terminar emulador Android si está ejecutándose
-    echo "🔴 Terminando emulador Android"
-    adb -s emulator-5554 emu kill 2>/dev/null || true
 }
 
 # Registrar función de limpieza para ejecutarse al salir (éxito o error)
 trap cleanup EXIT
 
-echo "🚀 Emulador listo, iniciando ejecución de pruebas"
+echo "🚀 Iniciando ejecución de pruebas móviles en Docker"
 
-# Esperar que el dispositivo Android esté disponible para comandos ADB
+echo "🔌 Conectando al emulador Android remoto..."
+adb connect android-emulator:5555 || true
+
+echo "⏳ Esperando dispositivo Android..."
 adb wait-for-device
-echo "📱 El dispositivo está disponible"
-sleep 5
+
+echo "📱 Dispositivos disponibles:"
+adb devices
 
 # Verificar que el emulador esté completamente inicializado (no solo conectado)
-echo "🔍 Verificando inicialización completa del emulador..."
+echo "🔍 Verificando boot completo del emulador..."
 while [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" != "1" ]; do
-    echo "⏳ Esperando que el boot se complete..."
+    echo "⏳ Esperando que Android termine de arrancar..."
     sleep 2
 done
-echo "✅ Boot del emulador completado"
+echo "✅ Emulador completamente iniciado"
 
 # Asegurar que el Package Manager de Android esté listo para instalar aplicaciones
 echo "📦 Verificando que Package Manager esté listo..."
 adb shell pm path android > /dev/null 2>&1
-echo "✅ Package Manager está operativo"
+echo "✅ Package Manager listo"
 
 # Instalar el APK en el emulador (flag -r permite reinstalación)
+if [ -z "$APK_PATH" ]; then
+    echo "❌ ERROR: Variable APK_PATH no definida"
+    exit 1
+fi
+
 echo "📲 Instalando APK: $APK_PATH"
-adb install -r $APK_PATH
-echo "✅ APK instalado exitosamente"
+adb install -r "$APK_PATH"
+echo "✅ APK instalado correctamente"
 
 # Optimización: instalar el servidor UiAutomator2 antes de iniciar Appium
-echo "🔧 Pre-instalando UiAutomator2 Server..."
+echo "🔧 Verificando UiAutomator2 Server..."
 UIAUTOMATOR2_APK="$HOME/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-uiautomator2-server/apks/appium-uiautomator2-server-v9.10.5.apk"
 
 if [ -f "$UIAUTOMATOR2_APK" ]; then
-    echo "📦 Instalando desde: $UIAUTOMATOR2_APK"
-    # Timeout de 120 segundos para la instalación
-    timeout 120 adb install -r "$UIAUTOMATOR2_APK" || {
-        echo "⚠️ Advertencia: No se pudo pre-instalar UiAutomator2 Server"
-        echo "   (Se instalará automáticamente al iniciar la primera sesión)"
-    }
+    echo "📦 Instalando UiAutomator2 Server..."
+    timeout 120 adb install -r "$UIAUTOMATOR2_APK" || true
 else
-    echo "⚠️ UiAutomator2 Server no encontrado en ruta esperada"
-    echo "   Se instalará automáticamente al iniciar la primera sesión"
+    echo "⚠️ UiAutomator2 Server no encontrado, Appium lo instalará automáticamente"
 fi
 
 # Iniciar Appium en segundo plano con nivel de log mínimo (solo errores)
@@ -77,11 +77,14 @@ sleep 15
 
 # Ejecutar el script de Python que maneja Robot Framework
 # Capturar el código de salida para determinar éxito o fallo
-echo "🧪 Ejecutando suite de pruebas..."
-if python scripts/execute-tests.py; then
-    echo "✅ Todas las pruebas pasaron exitosamente"
-    exit 0
+echo "🧪 Ejecutando pruebas con Robot Framework..."
+python scripts/execute-tests.py
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "✅ Todas las pruebas pasaron"
 else
-    echo "❌ Algunas pruebas fallaron - revisar reportes para detalles"
-    exit 1
+    echo "❌ Pruebas fallidas, revisar reportes"
 fi
+
+exit $EXIT_CODE

@@ -1,5 +1,5 @@
 # WORKFLOW DE GITHUB ACTIONS - PRUEBAS MÓVILES AUTOMATIZADAS
-name: Mobile Tests (Appium + Robot)
+name: Mobile Tests (Docker + Appium + Robot)
 
 # Este workflow se ejecuta cuando recibe un evento 'repository_dispatch' después de un build exitoso
 on:
@@ -11,139 +11,55 @@ permissions:
   actions: read      # Leer información de actions y workflows
   contents: write    # Escribir en el repositorio (para publicar reportes)
 
-# ===== DEFINICIÓN DE JOBS =====
 jobs:
-  mobile-tests:
-    runs-on: ubuntu-latest        # Ejecutar en la última versión de Ubuntu
-    timeout-minutes: 20           # Timeout máximo de 20 minutos para todo el job
+  android-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
-    # Paso 1: Descargar el código fuente del repositorio de pruebas (este repositorio)
-    - name: Checkout repo tests
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0            # Descargar historial completo para Git Pages
+      # Paso 1: Descargar el código fuente del repositorio de pruebas (este repositorio)
+      - name: Checkout repo tests
+        uses: actions/checkout@v4
+      # Paso 2: Ejecución de Docker
+      - name: Build & run tests
+        run: |
+          docker-compose build
+          docker-compose up --abort-on-container-exit
+      # Paso 3: Subir todos los reportes generados como artifacts de GitHub Actions
+      # Se ejecuta siempre (incluso si las pruebas fallan) para poder analizar resultados
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-reports
+          path: reports
+      # Paso 4: Verificar qué archivos se generaron en el directorio docs antes de publicar
+      - name: Debug docs content
+        run: |
+          echo "Contenido del directorio docs:"
+          ls -la docs
 
-    # Paso 2: Instalar Python 3.11 para ejecutar Robot Framework
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
+      # Paso 13: Publicar los reportes en GitHub Pages para acceso web fácil
+      # Configura Git y hace commit de los archivos generados en docs/
+      - name: Publish Robot Framework report to GitHub Pages
+        if: always()                      # Ejecutar siempre para tener reportes disponibles
+        run: |
+          # Configurar Git con usuario de GitHub Actions
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
 
-    # Paso 3: Instalar todas las librerías necesarias para Robot Framework y Appium
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install robotframework
-        pip install robotframework-appiumlibrary
-        pip install Appium-Python-Client
+          # Verificar estado del repositorio
+          git status
+          
+          # Agregar archivos del directorio docs al staging area
+          git add docs
 
-    # Paso 4: Instalar Java 17 (requerido por Android SDK y Appium)
-    - name: Setup Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: temurin      # Distribución Eclipse Temurin (OpenJDK)
-        java-version: 17          # Versión LTS recomendada para Android
-
-    # Paso 5: Instalar Android SDK con herramientas necesarias para emulador
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
-
-    # Paso 6: Instalar Node.js (requerido por Appium) ANTES de iniciar el emulador
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22          # Versión LTS más reciente
-
-    # Paso 7: Instalar Appium globalmente y el driver UiAutomator2 ANTES del emulador
-    - name: Install Appium
-      run: |
-        npm install -g appium@3.1.2
-        appium driver install uiautomator2
-        appium --version
-
-    # Paso 8: Descargar el APK generado por el workflow del repositorio de la aplicación
-    # Utiliza el token de acceso para descargar artifacts de repositorios privados
-    - name: Download APK artifact from App repo
-      uses: actions/download-artifact@v4
-      with:
-        name: app-debug-apk                                       # Nombre del artifact en el repo de la app
-        path: apk                                                 # Directorio local donde guardar el APK
-        repository: ${{ github.event.client_payload.app_repo }}   # Repo fuente (enviado en el dispatch)
-        run-id: ${{ github.event.client_payload.run_id }}         # ID del workflow run (enviado en el dispatch)
-        github-token: ${{ secrets.REPO_LOGINAPP_TESTS }}          # Token para acceso entre repositorios
-
-    # Paso 9: Verificar que el APK se descargó correctamente y mostrar información
-    - name: Verify APK
-      run: |
-        ls -lh apk
-
-    # Paso 10: Iniciar emulador Android y ejecutar la suite completa de pruebas
-    # Este paso combina la inicialización del emulador con la ejecución de tests
-    - name: Start Android Emulator and Run Tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        # Configuración del emulador Android
-        api-level: 29                    # Android 10 (API 29) - versión estable y compatible
-        arch: x86_64                     # Arquitectura x86_64 para mejor rendimiento en CI
-        target: default                  # Target por defecto (Google APIs)
-        profile: pixel                   # Perfil de dispositivo Pixel
-        avd-name: appium                 # Nombre del AVD (debe coincidir con capabilities)
-        
-        # Optimizaciones de rendimiento para CI
-        cores: 2                        # Usar 2 cores de CPU
-        ram-size: 2048M                 # 2GB de RAM para el emulador
-        force-avd-creation: true        # Forzar creación de AVD limpio
-        emulator-boot-timeout: 2000     # Timeout de 2000 segundos para boot
-        disable-animations: true        # Deshabilitar animaciones para mayor velocidad
-        
-        # Opciones del emulador para entorno headless
-        emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
-        disable-linux-hw-accel: true   # Deshabilitar aceleración de hardware en Linux
-        
-        # Script a ejecutar una vez que el emulador esté listo
-        script: chmod +x ./scripts/run-tests.sh && ./scripts/run-tests.sh
-      env:
-        # Variables de entorno para el script de pruebas
-        ENV: ci                         # Usar capabilities de CI (emulador)
-        APK_PATH: apk/app-debug.apk     # Ruta al APK descargado
-
-    # Paso 11: Subir todos los reportes generados como artifacts de GitHub Actions
-    # Se ejecuta siempre (incluso si las pruebas fallan) para poder analizar resultados
-    - name: Upload test reports
-      if: always()                      # Ejecutar siempre, independientemente del resultado
-      uses: actions/upload-artifact@v4
-      with:
-        name: robot-reports             # Nombre del artifact
-        path: reports                   # Directorio con todos los reportes generados
-    
-    # Paso 12: Verificar qué archivos se generaron en el directorio docs antes de publicar
-    - name: Debug docs content
-      run: |
-        echo "Contenido del directorio docs:"
-        ls -la docs
-
-    # Paso 13: Publicar los reportes en GitHub Pages para acceso web fácil
-    # Configura Git y hace commit de los archivos generados en docs/
-    - name: Publish Robot Framework report to GitHub Pages
-      if: always()                      # Ejecutar siempre para tener reportes disponibles
-      run: |
-        # Configurar Git con usuario de GitHub Actions
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-
-        # Verificar estado del repositorio
-        git status
-        
-        # Agregar archivos del directorio docs al staging area
-        git add docs
-
-        # Verificar si hay cambios reales para commitear
-        if git diff --cached --quiet; then
-          echo "ℹ️ No hay cambios reales en docs/ - no se requiere commit"
-        else
-          echo "✅ Commiteando cambios en reportes..."
-          git commit -m "🤖 Actualización automática: Reportes de Robot Framework $(date '+%Y-%m-%d %H:%M:%S')"
-          git push
-          echo "📄 Reportes publicados en GitHub Pages"
-        fi
+          # Verificar si hay cambios reales para commitear
+          if git diff --cached --quiet; then
+            echo "ℹ️ No hay cambios reales en docs/ - no se requiere commit"
+          else
+            echo "✅ Commiteando cambios en reportes..."
+            git commit -m "🤖 Actualización automática: Reportes de Robot Framework $(date '+%Y-%m-%d %H:%M:%S')"
+            git push
+            echo "📄 Reportes publicados en GitHub Pages"
+          fi

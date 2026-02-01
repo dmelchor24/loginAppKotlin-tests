@@ -3,6 +3,7 @@ import os
 
 # Obtener la ruta del APK desde variable de entorno (requerida en CI)
 APK_PATH = os.getenv("APK_PATH")
+REMOTE_URL = os.getenv("APPIUM_SERVER", "http://localhost:4723/wd/hub")
 
 # Validar que la variable de entorno esté definida
 if not APK_PATH:
@@ -10,12 +11,9 @@ if not APK_PATH:
 
 # Configuración básica de la plataforma
 platformName = "Android"
-deviceName = "emulator-5554"      
-# Nombre estándar del emulador Android
-automationName =  "UiAutomator2"  # Framework de automatización moderno
+automationName =  "UiAutomator2"  # Nombre estándar del emulador Android
+deviceName = "Android Emulator"      # En Docker no se asume un ID fijo
 
-# Configuración específica para emulador
-avd = "appium"  # Nombre del Android Virtual Device
 app = APK_PATH  # Ruta del APK obtenida de variable de entorno
 
 # Variables no utilizadas en CI (se instala APK directamente)
@@ -25,16 +23,20 @@ appActivity = ""       # Se detecta automáticamente desde el APK
 # Timeouts básicos para comandos Appium
 newCommandTimeout = 300         # 5 minutos - tiempo máximo entre comandos
 adbExecTimeout = 60000          # 60 segundos - timeout para comandos ADB
-autoGrantPermissions = True     # Otorgar permisos automáticamente
-noReset = False                 # Resetear app entre pruebas para estado limpio
 
 # Los entornos CI suelen ser más lentos que máquinas locales
 uiautomator2ServerInstallTimeout = 60000    # 60 segundos para instalar el servidor UiAutomator2
 uiautomator2ServerLaunchTimeout = 60000     # 60 segundos para lanzar el servidor UiAutomator2
 androidInstallTimeout = 90000               # 90 segundos para instalar aplicaciones Android
 
-# Estas configuraciones mejoran la estabilidad en entornos automatizados
-skipServerInstallation = False              # Asegurar instalación limpia
-skipDeviceInitialization = False
+autoGrantPermissions = True     # Otorgar permisos automáticamente
+noReset = False                 # Resetear app entre pruebas para estado limpio
 disableWindowAnimation = True
-ignoreHiddenApiPolicyError = True           # Evitar errores en API 29+
+ignoreHiddenApiPolicyError = True
+
+# Configuración específica para emulador
+avd = ""    # NO usar AVD en Docker
+
+# Estas configuraciones mejoran la estabilidad en entornos automatizados
+skipDeviceInitialization = True
+skipServerInstallation = False              # Asegurar instalación limpia

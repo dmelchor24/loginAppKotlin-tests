@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  android-emulator:
+    build: ./docker/emulator
+    container_name: android-emulator
+    privileged: true
+    ports:
+      - "5554:5554"
+      - "5555:5555"
+
+  mobile-tests:
+    build: .
+    container_name: mobile-tests
+    depends_on:
+      - android-emulator
+    privileged: true
+    environment:
+      - ENV=ci
+      - APK_PATH=/app/app-debug.apk
+    volumes:
+      - ./reports:/app/reports
+      - ./docs:/app/docs
+    ports:
+      - "4723:4723"
