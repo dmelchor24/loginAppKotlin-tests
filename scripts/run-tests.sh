@@ -22,6 +22,9 @@ trap cleanup EXIT
 
 echo "🚀 Iniciando ejecución de pruebas móviles en Docker"
 
+echo "🐍 Verificando Python..."
+python3 --version
+
 echo "🔌 Conectando al emulador Android remoto..."
 adb connect android-emulator:5555 || true
 
@@ -78,7 +81,7 @@ sleep 15
 # Ejecutar el script de Python que maneja Robot Framework
 # Capturar el código de salida para determinar éxito o fallo
 echo "🧪 Ejecutando pruebas con Robot Framework..."
-python scripts/execute-tests.py
+python3 scripts/execute-tests.py
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
