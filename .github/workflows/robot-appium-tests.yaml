@@ -23,8 +23,8 @@ jobs:
       # Paso 2: Ejecución de Docker
       - name: Build & run tests
         run: |
-          docker-compose build
-          docker-compose up --abort-on-container-exit
+          docker compose build
+          docker compose up --abort-on-container-exit
       # Paso 3: Subir todos los reportes generados como artifacts de GitHub Actions
       # Se ejecuta siempre (incluso si las pruebas fallan) para poder analizar resultados
       - name: Upload reports
