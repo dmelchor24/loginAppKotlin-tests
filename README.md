@@ -14,9 +14,14 @@ Este proyecto implementa un framework de automatización de pruebas para aplicac
 
 ```
 loginApp-tests/
-├── 📁 capabilities/          # Configuraciones de Appium por entorno
-│   ├── android-local.py      # Configuración para dispositivos físicos
-│   └── android-ci.py         # Configuración para emuladores en CI
+├── 📁 capabilities/            # Configuraciones de Appium por entorno
+│   ├── android-local.py        # Configuración para dispositivos físicos
+│   └── android-ci.py           # Configuración para emuladores en CI
+├── 📁 docker/                 
+│       📁 emulador            
+│       └── Dockerfile         # Variables del emulador
+├── Dockerfile                 # Instalación de Appium, Robot Framework, Android SDK
+├── docker-compose.yaml        # Ejecución de servicios
 ├── 📁 elementos/             # Page Object Model - Localizadores
 │   └── elementos.robot       # Definición de elementos UI
 ├── 📁 recursos/              # Keywords reutilizables
