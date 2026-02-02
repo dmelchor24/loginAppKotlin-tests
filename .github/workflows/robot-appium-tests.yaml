@@ -43,22 +43,23 @@ jobs:
           fi
           echo "✅ APK encontrado"
 
+      # Paso 4: Mueve el APK a la ruta específica
       - name: Prepare APK for Docker
         run: |
           mv apk/app-debug.apk ./app-debug.apk
           ls -lh app-debug.apk
 
-      # Paso 4: Información de Docker
+      # Paso 5: Información de Docker
       - name: Docker info
         run: docker info
 
-      # Paso 4: Ejecución de Docker
+      # Paso 6: Ejecución de Docker
       - name: Build & run tests
         run: |
           docker compose build
           docker compose up --exit-code-from mobile-tests
       
-      # Paso 5: Subir todos los reportes generados como artifacts de GitHub Actions
+      # Paso 7: Subir todos los reportes generados como artifacts de GitHub Actions
       # Se ejecuta siempre (incluso si las pruebas fallan) para poder analizar resultados
       - name: Upload reports
         if: always()
@@ -67,17 +68,18 @@ jobs:
           name: robot-reports
           path: reports
       
-      # Paso 6: Verificar qué archivos se generaron en el directorio docs antes de publicar
+      # Paso 8: Verificar qué archivos se generaron en el directorio docs antes de publicar
       - name: Debug docs content
         run: |
           echo "Contenido del directorio docs:"
           ls -la docs || echo "⚠️ docs/ no existe aún"
 
+       # Paso 9: Detiene y elimina los contenedores
       - name: Cleanup containers
         if: always()
         run: docker compose down
 
-      # Paso 7: Publicar los reportes en GitHub Pages para acceso web fácil
+      # Paso 10: Publicar los reportes en GitHub Pages para acceso web fácil
       # Configura Git y hace commit de los archivos generados en docs/
       - name: Publish Robot Framework report to GitHub Pages
         if: always()                      # Ejecutar siempre para tener reportes disponibles
