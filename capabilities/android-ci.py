@@ -3,7 +3,6 @@ import os
 
 # Obtener la ruta del APK desde variable de entorno (requerida en CI)
 APK_PATH = os.getenv("APK_PATH")
-REMOTE_URL = os.getenv("APPIUM_SERVER", "http://android-emulator:4723")
 
 # Validar que la variable de entorno esté definida
 if not APK_PATH:
